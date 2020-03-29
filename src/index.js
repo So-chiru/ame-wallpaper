@@ -131,6 +131,19 @@ settings.events.on('changeuser', prop => {
     weather.getWeather().then(weatherUpdate)
   }
 
+  if (prop.use_custom_latlon) {
+    let v = prop.use_custom_latlon.value
+    document.querySelector('.div').dataset.done = false
+    document.querySelector('.weather').dataset.done = false
+
+    weather.setCoord(
+      v && v.trim().length && v.indexOf(',') !== -1
+        ? prop.use_custom_latlon.value.split(',').map(v => parseFloat(v))
+        : []
+    )
+    weather.getWeather().then(weatherUpdate)
+  }
+
   if (prop.use_ripple_effect) {
     window.useRipple = prop.use_ripple_effect.value
   }
