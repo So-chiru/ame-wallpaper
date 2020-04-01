@@ -112,10 +112,28 @@ span {
 .info {
   z-index: 2;
   position: fixed;
-  right: 7vw;
-  bottom: 7vh;
   display: flex;
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+
+  &[data-pos="1"] {
+    left: 7vw;
+    top: 7vh;
+  }
+
+  &[data-pos="2"] {
+    right: 7vw;
+    top: 7vh;
+  }
+
+  &[data-pos="3"] {
+    left: 7vw;
+    bottom: 7vh;
+  }
+
+  &[data-pos="4"] {
+    right: 7vw;
+    bottom: 7vh;
+  }
 
   opacity: 0;
 

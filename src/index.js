@@ -147,4 +147,8 @@ settings.events.on('changeuser', prop => {
   if (prop.use_ripple_effect) {
     window.useRipple = prop.use_ripple_effect.value
   }
+
+  if (prop.info_position) {
+    document.querySelector('.info').dataset.pos = prop.info_position.value
+  }
 })
