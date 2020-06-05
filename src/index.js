@@ -12,18 +12,23 @@ const Ripple = require('./ripple')
 let weather = require('./weather')
 
 const weatherUpdate = v => {
+  console.log(v)
+
   document.querySelector('.div').dataset.done = true
   document.querySelector('.weather').dataset.done = true
 
   document.querySelector('#temp').innerHTML =
-    v.temperature + '°' + (weather.getScale() ? 'F' : 'C')
-  document.querySelector('#where').innerHTML = v.name + ', ' + v.country
-  document.querySelector('#wicon').src = v.icon.replace(/img\/w/, 'img/wn')
+    v.properties.timeseries[0].data.instant.details.air_temperature +
+    '°' +
+    (v.properties.meta.units.air_temperature == 'celsius' ? 'C' : 'F')
+  document.querySelector('#wicon').src =
+    'https://weathericons.now.sh/' +
+    v.properties.timeseries[0].data.next_1_hours.summary.symbol_code +
+    '.png'
 
-  document.querySelector('#humid').innerHTML = v.main.humidity + '%'
-  document.querySelector('#clouds').innerHTML = v.clouds.all + '%'
-
-  console.log(v)
+  document.querySelector('#winds').innerHTML = v.properties.timeseries[0].data.instant.details.wind_speed + v.properties.meta.units.wind_speed
+  document.querySelector('#humid').innerHTML = v.properties.timeseries[0].data.instant.details.relative_humidity + '%'
+  document.querySelector('#clouds').innerHTML = v.properties.timeseries[0].data.instant.details.cloud_area_fraction + '%'
 
   weather.setData(v)
 }
