@@ -11,6 +11,10 @@ const Ripple = require('./ripple')
 
 let weather = require('./weather')
 
+const convertUnitsCF = v => {
+  return weather.getScale() ? v * (9 / 5) + 32 : v
+}
+
 const weatherUpdate = v => {
   console.log(v)
 
@@ -18,17 +22,23 @@ const weatherUpdate = v => {
   document.querySelector('.weather').dataset.done = true
 
   document.querySelector('#temp').innerHTML =
-    v.properties.timeseries[0].data.instant.details.air_temperature +
+    convertUnitsCF(
+      v.properties.timeseries[0].data.instant.details.air_temperature
+    ) +
     '°' +
-    (v.properties.meta.units.air_temperature == 'celsius' ? 'C' : 'F')
+    (weather.getScale() ? 'F' : 'C')
   document.querySelector('#wicon').src =
     'https://weathericons.now.sh/' +
     v.properties.timeseries[0].data.next_1_hours.summary.symbol_code +
     '.png'
 
-  document.querySelector('#winds').innerHTML = v.properties.timeseries[0].data.instant.details.wind_speed + v.properties.meta.units.wind_speed
-  document.querySelector('#humid').innerHTML = v.properties.timeseries[0].data.instant.details.relative_humidity + '%'
-  document.querySelector('#clouds').innerHTML = v.properties.timeseries[0].data.instant.details.cloud_area_fraction + '%'
+  document.querySelector('#winds').innerHTML =
+    v.properties.timeseries[0].data.instant.details.wind_speed +
+    v.properties.meta.units.wind_speed
+  document.querySelector('#humid').innerHTML =
+    v.properties.timeseries[0].data.instant.details.relative_humidity + '%'
+  document.querySelector('#clouds').innerHTML =
+    v.properties.timeseries[0].data.instant.details.cloud_area_fraction + '%'
 
   weather.setData(v)
 }
