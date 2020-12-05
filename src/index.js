@@ -106,6 +106,11 @@ settings.events.on('changeuser', prop => {
       prop.background_blur.value
   }
 
+  if (prop.use_logo) {
+    window.slide[prop.use_logo.value ? 'start' : 'stop']()
+    window.wallcanvas.useLogo = prop.use_logo.value
+  }
+
   if (prop.slide_delay) {
     window.slide.delay = prop.slide_delay.value
   }

@@ -29,6 +29,8 @@ class RainCanvas {
     this.speed = 3
     this.max = 600
     this.div = 1
+
+    this.useLogo = true
   }
 
   createRain (bass) {
@@ -62,7 +64,11 @@ class RainCanvas {
       rain.y += this.speed
 
       if (this.musicctrl) {
-        rain.y += this.speed * this.bass()
+        if (!rain.s) {
+          rain.s = this.bass()
+        }
+
+        rain.y += this.speed * rain.s
       }
 
       if (rain.ac + 3000 < Date.now() && !rain.abs) {
@@ -70,9 +76,10 @@ class RainCanvas {
       }
 
       if (
+        this.useLogo &&
         rain.x > this.$.width / 2 - 70 &&
-        rain.x < this.$.width / 2 + 70 &&
-        rain.y > this.$.height / 2 - 200
+          rain.x < this.$.width / 2 + 70 &&
+          rain.y > this.$.height / 2 - 200
       ) {
         rain.logoh = true
       }

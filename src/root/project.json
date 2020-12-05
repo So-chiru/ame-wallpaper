@@ -9,6 +9,7 @@
         "ui_background": "<h3>Background<br></h3>",
         "ui_backgroundImageFile": "Background Image File",
         "ui_backgroundBlur": "Use Background Blur",
+        "ui_useLogo": "Use Logo",
         "ui_logoSlideDelay": "Logo Slide Delay",
         "ui_particles": "<h3>Particles<br></h3>",
         "ui_maxRains": "Max rain particles count",
@@ -26,6 +27,7 @@
         "ui_background": "<h3>Background</h3>",
         "ui_backgroundImageFile": "背景として使用するイメージファイル",
         "ui_backgroundBlur": "背景ぼかし効果を使用",
+        "ui_useLogo": "ロゴ使用",
         "ui_logoSlideDelay": "ロゴを変更する遅延時間",
         "ui_particles": "<h3>Particles<br></h3>",
         "ui_maxRains": "最大雨滴パーティクル数",
@@ -43,6 +45,7 @@
         "ui_background": "<h3>배경</h3>",
         "ui_backgroundImageFile": "배경 이미지 파일",
         "ui_backgroundBlur": "배경 블러 사용",
+        "ui_useLogo": "로고 사용",
         "ui_logoSlideDelay": "로고 전환 지연 시간",
         "ui_particles": "<h3>파티클<br></h3>",
         "ui_maxRains": "빗방울 파티클 최대 갯수",
@@ -60,7 +63,7 @@
     "properties": {
       "logos": {
         "order": 99999,
-        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 5 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 7 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
       },
       "background_divide": {
         "order": 100,
@@ -78,11 +81,18 @@
         "type": "bool",
         "value": true
       },
+      "use_logo": {
+        "fraction": true,
+        "order": 104,
+        "text": "ui_useLogo",
+        "type": "bool",
+        "value": true
+      },
       "slide_delay": {
         "fraction": true,
         "max": 60000,
         "min": 0,
-        "order": 104,
+        "order": 105,
         "precision": 2,
         "step": 1,
         "text": "ui_logoSlideDelay",
@@ -90,7 +100,7 @@
         "value": 10000
       },
       "use_ripple_effect": {
-        "order": 105,
+        "order": 106,
         "text": "ui_useScreenRippleEffect",
         "type": "bool",
         "value": true

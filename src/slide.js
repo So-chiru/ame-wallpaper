@@ -6,6 +6,8 @@ class Slide {
 
     this.pointer = 0
     this.delay = 20000
+    this.enable = true
+    this.timeout = null
   }
 
   set slide (p) {
@@ -33,12 +35,18 @@ class Slide {
     }
 
     this.fade()
+    this.$p.classList.remove('no-display')
+  }
+
+  stop() {
+    clearTimeout(this.timeout)
+    this.$p.classList.add('no-display')
   }
 
   fade () {
     this.slide = this.pointer
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       if (this.pointer >= this.$.length - 1) {
         this.pointer = 0
       } else {

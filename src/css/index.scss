@@ -68,6 +68,10 @@ span {
   margin: 0;
 }
 
+.no-display, .no-display img {
+  opacity: 0 !important;
+}
+
 .center,
 .rain {
   position: fixed;
@@ -84,6 +88,10 @@ span {
   .slide {
     margin: auto;
     display: contents;
+
+    transition: 0.3s opacity cubic-bezier(0.19, 1, 0.22, 1);
+
+    opacity: 1;
   }
 
   .contrast-ame,
