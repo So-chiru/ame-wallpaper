@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "webpack --watch",
     "dev-app": "webpack --watch --env DIST_PATH='C:/Program Files (x86)/Steam/steamapps/common/wallpaper_engine/projects/myprojects/index'",
-    "build": "webpack build --mode production"
+    "build": "webpack build --mode production",
+    "lint": "eslint -c .eslintrc.json './src/**/*.{ts,tsx,js,jsx}'",
+    "lint-fix": "eslint --fix -c .eslintrc.json './src/**/*.{ts,tsx,js,jsx}'"
   },
   "dependencies": {
     "@babel/core": "^7.14.3",
@@ -31,7 +33,11 @@
     "webpack": "^5.37.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
     "@yarnpkg/pnpify": "^3.0.0-rc.3",
+    "eslint": "^7.27.0",
+    "eslint-import-resolver-node": "^0.3.4",
     "webpack-cli": "^4.7.0"
   }
 }
