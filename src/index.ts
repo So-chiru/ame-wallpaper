@@ -3,19 +3,24 @@ require('./images/ame-bg.jpg')
 require('./images/ame-white.png')
 require('./images/tuyu-white.png')
 
-const settings = require('./settings')
+window.settings = {
+  useRipple: true,
+  showSeconds: true
+}
 
-const RainCanvas = require('./canvas')
-const Slide = require('./slide')
-const Ripple = require('./ripple')
+import settings, { loadURLSettings } from './settings'
+import RainCanvas from './canvas'
 
-let weather = require('./weather')
+import Slide from './slide'
+import Ripple from './ripple'
 
-const convertUnitsCF = v => {
+import weather from './weather'
+
+const convertUnitsCF = (v: number) => {
   return weather.getScale() ? v * (9 / 5) + 32 : v
 }
 
-const weatherUpdate = v => {
+const weatherUpdate = (v: Record<string, unknown>) => {
   console.log(v)
 
   document.querySelector('.div').dataset.done = true
@@ -44,44 +49,48 @@ const weatherUpdate = v => {
 }
 
 const setWeatherInterval = () => {
-  window.weatherInterval = setInterval(() => {
+  window.weatherInterval = (setInterval(() => {
     weather.getWeather().then(weatherUpdate)
-  }, 300000)
+  }, 300000) as unknown) as number
 }
 
-const setTimeInterval = () => {
-  window.timeInterval = setInterval(() => {
+const setClockInterval = () => {
+  window.clockInterval = (setInterval(() => {
     let d = new Date()
-    document.querySelector('#hour').innerHTML = nb(d.getHours())
-    document.querySelector('#min').innerHTML = nb(d.getMinutes())
-    document.querySelector('#sec').innerHTML = window.showSeconds
+    document.querySelector('#hour')!.innerHTML = nb(d.getHours())
+    document.querySelector('#min')!.innerHTML = nb(d.getMinutes())
+    document.querySelector('#sec')!.innerHTML = window.settings.showSeconds
       ? ' : ' + nb(d.getSeconds())
       : ''
-  }, 500)
+  }, 500) as unknown) as number
 }
 
 const nb = s => (s < 10 ? '0' + s : s)
 
 window.addEventListener('DOMContentLoaded', () => {
-  window.wallcanvas = new RainCanvas(document.querySelector('canvas'))
-  window.wallcanvas.draw()
+  window.wallCanvas = new RainCanvas(document.querySelector('canvas'))
+  window.wallCanvas.draw()
   // canvas.stop()
 
   window.slide = new Slide(document.querySelector('.slide'), 'img')
   window.slide.start()
 
   window.addEventListener('click', ev => {
-    if (window.useRipple) {
+    if (window.settings.useRipple) {
       new Ripple(ev)
     }
   })
 
   setWeatherInterval()
-  setTimeInterval()
+  setClockInterval()
 
-  window.wallpaperRegisterAudioListener(h => {
-    window.wallcanvas.music(h)
-  })
+  if (window.wallpaperRegisterAudioListener) {
+    window.wallpaperRegisterAudioListener(h => {
+      window.wallCanvas.music(h)
+    })
+  }
+
+  loadURLSettings()
 })
 
 window.addEventListener('load', () => {
@@ -89,11 +98,16 @@ window.addEventListener('load', () => {
   document.querySelector('done').dataset.done = true
 })
 
-settings.events.on('change', prop => {
+settings.on('change', prop => {
   console.log(prop)
 })
 
-settings.events.on('changeuser', prop => {
+settings.on('changeuser', (prop: WallpaperOptions) => {
+  if (prop.background_image_url) {
+    document.getElementById('background').src =
+      prop.background_image_url.value || './ame-bg.jpg'
+  }
+
   if (prop.background_image_file) {
     let file = prop.background_image_file.value
     document.getElementById('background').src = file.length
@@ -108,7 +122,7 @@ settings.events.on('changeuser', prop => {
 
   if (prop.use_logo) {
     window.slide[prop.use_logo.value ? 'start' : 'stop']()
-    window.wallcanvas.useLogo = prop.use_logo.value
+    window.wallCanvas.useLogo = prop.use_logo.value
   }
 
   if (prop.slide_delay) {
@@ -116,15 +130,15 @@ settings.events.on('changeuser', prop => {
   }
 
   if (prop.max_rain) {
-    window.wallcanvas.max = prop.max_rain.value
+    window.wallCanvas.max = prop.max_rain.value
   }
 
   if (prop.speed_rain) {
-    window.wallcanvas.speed = prop.speed_rain.value
+    window.wallCanvas.speed = prop.speed_rain.value
   }
 
   if (prop.use_music_speed_control) {
-    window.wallcanvas.musicctrl = prop.use_music_speed_control.value
+    window.wallCanvas.matchToMusic = prop.use_music_speed_control.value
   }
 
   if (prop.use_info) {
@@ -132,15 +146,15 @@ settings.events.on('changeuser', prop => {
 
     if (!prop.use_info.value) {
       clearInterval(window.weatherInterval)
-      clearInterval(window.timeInterval)
+      clearInterval(window.clockInterval)
     } else {
       setWeatherInterval()
-      setTimeInterval()
+      setClockInterval()
     }
   }
 
   if (prop.use_seconds_info) {
-    window.showSeconds = prop.use_seconds_info.value
+    window.settings.showSeconds = prop.use_seconds_info.value
   }
 
   if (prop.use_fahrenheit) {
@@ -165,7 +179,7 @@ settings.events.on('changeuser', prop => {
   }
 
   if (prop.use_ripple_effect) {
-    window.useRipple = prop.use_ripple_effect.value
+    window.settings.useRipple = prop.use_ripple_effect.value
   }
 
   if (prop.info_position) {

@@ -1,11 +1,28 @@
-const uuid = require('./uuid')
+import uuid from './uuid'
 
-class eventBus {
+interface eventBusEventsCollection {
+  cb: Record<string, eventBusEvent>
+  __date: number
+}
+
+interface eventBusEvent {
+  func: Function
+  once: boolean | undefined
+  id: string
+}
+
+interface eventBusOptions {
+  once: boolean
+}
+
+export default class eventBus {
+  events: Record<string, eventBusEventsCollection>
+
   constructor () {
     this.events = {}
   }
 
-  emit (event, ...args) {
+  emit (event: string, ...args: any[]) {
     if (!event) {
       throw new Error('event is not defined. please specify in argument 1.')
     }
@@ -31,14 +48,14 @@ class eventBus {
     }
   }
 
-  on (event, callback, options) {
+  on (event: string, callback: Function, options?: eventBusOptions) {
     if (!event) {
       throw new Error('event is not defined. please specify in argument 1.')
     }
 
     if (!this.events[event]) {
       this.events[event] = {
-        cb: [],
+        cb: {},
         __date: Date.now()
       }
     }
@@ -47,13 +64,14 @@ class eventBus {
 
     this.events[event].cb[id] = {
       once: options && options.once,
-      func: callback
+      func: callback,
+      id
     }
 
     return id
   }
 
-  off (event, id) {
+  off (event: string, id: string) {
     if (!event) {
       throw new Error('event is not defined. please specify in argument 1.')
     }
@@ -65,5 +83,3 @@ class eventBus {
     delete this.events[event].cb[id]
   }
 }
-
-module.exports = eventBus

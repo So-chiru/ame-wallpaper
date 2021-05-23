@@ -12,7 +12,7 @@ module.exports = env => {
   return {
     mode: dev ? 'development' : 'production',
     entry: {
-      app: ['babel-polyfill', path.resolve('src', 'index.js')]
+      app: ['babel-polyfill', path.resolve('src', 'index.ts')]
     },
     output: {
       publicPath: '/',
@@ -28,7 +28,7 @@ module.exports = env => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env', '@babel/preset-typescript']
             }
           }
         },
@@ -65,7 +65,7 @@ module.exports = env => {
       minimize: true,
       minimizer: [
         new TerserPlugin({
-          test: /\.js(\?.*)?$/i,
+          test: /\.js(\?.*)?$|\.ts/i,
           terserOptions: {
             mangle: true,
             output: {
@@ -89,9 +89,7 @@ module.exports = env => {
         inject: false
       }),
       new CopyWebpackPlugin({
-        patterns: [
-          { from: 'src/root', to: '.' }
-        ]
+        patterns: [{ from: 'src/root', to: '.' }]
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
@@ -99,8 +97,11 @@ module.exports = env => {
       })
     ],
     resolve: {
-      extensions: ['.js', '.css'],
-      modules: ['node_modules']
+      extensions: ['.js', '.ts', '.css'],
+      modules: ['node_modules'],
+      alias: {
+        '@': path.resolve(__dirname, 'src')
+      }
     }
   }
 }

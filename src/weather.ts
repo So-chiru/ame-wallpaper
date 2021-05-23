@@ -1,13 +1,13 @@
 let useFahrenheit = false
 let savedData = {}
-let coord = []
+let coord: number[] = []
 let randomID = Math.random()
   .toString(36)
   .substring(7)
 const httpOptions = {
   headers: {
     Origin: 'localhost',
-    'X-Requested-With': 'Wallpaper Engine ' + randomID
+    'User-Agent': 'Wallpaper Engine (github.com/So-chiru/yappaAmeWallpaper) ' + randomID
   }
 }
 
@@ -39,47 +39,47 @@ const getPostionAPI = () => {
 }
 
 const getWeather = async () => {
-  let c
+  let c: typeof coord
 
   try {
-    c = await getPostionAPI()
+    c = (await getPostionAPI()) as typeof coord
   } catch (e) {
     return
   }
 
   let res = await fetch(
-    `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${c[0]}&lon=${c[1]}`,
+    `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${c[0].toFixed(4)}&lon=${c[1].toFixed(4)}`,
     httpOptions
   )
 
   return res.json()
 }
 
-const setScale = v => {
+const setScale = (v: boolean) => {
   useFahrenheit = v
 }
 
-const getScale = v => {
+const getScale = () => {
   return useFahrenheit
 }
 
-const setData = v => {
+const setData = (v: Record<string, unknown>) => {
   savedData = v
 }
 
-const getData = v => {
+const getData = () => {
   return savedData
 }
 
-const setCoord = v => {
+const setCoord = (v: number[]) => {
   coord = v
 }
 
-const getCoord = v => {
+const getCoord = () => {
   return coord
 }
 
-module.exports = {
+export default {
   getWeather,
   setScale,
   getScale,

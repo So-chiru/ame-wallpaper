@@ -1,11 +1,13 @@
-class Ripple {
-  constructor (ev) {
+export default class Ripple {
+  $: HTMLElement
+
+  constructor(ev: MouseEvent) {
     this.$ = document.createElement('ripple')
 
     this.$.style.left = ev.screenX - 50 + 'px'
     this.$.style.top = ev.screenY - 50 + 'px'
 
-    document.querySelector('body').appendChild(this.$)
+    document.querySelector('body')!.appendChild(this.$)
 
     setTimeout(() => {
       this.destroy()
@@ -13,8 +15,6 @@ class Ripple {
   }
 
   destroy () {
-    document.querySelector('body').removeChild(this.$)
+    document.querySelector('body')!.removeChild(this.$)
   }
 }
-
-module.exports = Ripple

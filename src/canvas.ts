@@ -1,5 +1,18 @@
 class Rain {
-  constructor (w, size, width) {
+  x: number
+  y: number
+  w: number
+  h: number
+
+  o: number
+  ac: number
+
+  s?: number
+
+  abs?: boolean
+  logoh?: boolean
+
+  constructor (w: number, size: number, width: number) {
     this.x = Math.random() * w
     this.y = Math.random() * 100
     this.w = Math.min(5, Math.round(Math.random() * 2) * (width || 1))
@@ -10,8 +23,23 @@ class Rain {
   }
 }
 
-class RainCanvas {
-  constructor (elem) {
+export default class RainCanvas {
+  $: HTMLCanvasElement
+  $ctx: CanvasRenderingContext2D | null
+
+  rains: Rain[]
+  sounds: number[]
+
+  repeatFrame?: number
+
+  speed: number
+  matchToMusic: boolean
+  max: number
+  div: number
+
+  useLogo: boolean
+
+  constructor (elem: HTMLCanvasElement) {
     if (!elem) {
       throw new Error('element is not defined.')
     }
@@ -25,7 +53,7 @@ class RainCanvas {
     this.rains = []
     this.sounds = []
 
-    this.musicctrl = false
+    this.matchToMusic = false
     this.speed = 3
     this.max = 600
     this.div = 1
@@ -33,19 +61,19 @@ class RainCanvas {
     this.useLogo = true
   }
 
-  createRain (bass) {
+  createRain (bass: number) {
     return this.rains.push(
       new Rain(this.$.width, Math.max(40 * Math.random(), 5), bass)
     )
   }
 
-  music (arr) {
+  music (arr: number[]) {
     // let
     this.sounds = arr
   }
 
   bass () {
-    return this.musicctrl
+    return this.matchToMusic
       ? this.sounds[2] * 3 + // Kick
         this.sounds[3] * 4 +
         this.sounds[4] * 3 +
@@ -56,6 +84,10 @@ class RainCanvas {
   }
 
   draw () {
+    if (!this.$ctx) {
+      return
+    }
+
     this.$ctx.clearRect(0, 0, this.$.width, this.$.height)
 
     for (var i = 0; i < this.rains.length; i++) {
@@ -63,7 +95,7 @@ class RainCanvas {
 
       rain.y += this.speed
 
-      if (this.musicctrl) {
+      if (this.matchToMusic) {
         if (!rain.s) {
           rain.s = this.bass()
         }
@@ -78,8 +110,8 @@ class RainCanvas {
       if (
         this.useLogo &&
         rain.x > this.$.width / 2 - 70 &&
-          rain.x < this.$.width / 2 + 70 &&
-          rain.y > this.$.height / 2 - 200
+        rain.x < this.$.width / 2 + 70 &&
+        rain.y > this.$.height / 2 - 200
       ) {
         rain.logoh = true
       }
@@ -127,8 +159,8 @@ class RainCanvas {
   }
 
   stop () {
-    cancelAnimationFrame(this.frame)
+    if (this.repeatFrame) {
+      cancelAnimationFrame(this.repeatFrame)
+    }
   }
 }
-
-module.exports = RainCanvas
