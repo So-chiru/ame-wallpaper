@@ -37,7 +37,8 @@ tuyu-bg-before {
   z-index: -2;
 
   img {
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
   }
 
   &[data-blur='true'] {
@@ -68,7 +69,8 @@ span {
   margin: 0;
 }
 
-.no-display, .no-display img {
+.no-display,
+.no-display img {
   opacity: 0 !important;
 }
 
@@ -123,22 +125,22 @@ span {
   display: flex;
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
 
-  &[data-pos="1"] {
+  &[data-pos='1'] {
     left: 7vw;
     top: 7vh;
   }
 
-  &[data-pos="2"] {
+  &[data-pos='2'] {
     right: 7vw;
     top: 7vh;
   }
 
-  &[data-pos="3"] {
+  &[data-pos='3'] {
     left: 7vw;
     bottom: 7vh;
   }
 
-  &[data-pos="4"] {
+  &[data-pos='4'] {
     right: 7vw;
     bottom: 7vh;
   }

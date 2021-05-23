@@ -33,7 +33,7 @@ const weatherUpdate = (v: Record<string, unknown>) => {
     '°' +
     (weather.getScale() ? 'F' : 'C')
   document.querySelector('#wicon').src =
-    'https://weathericons.now.sh/' +
+    'https://weathericons.vercel.app/' +
     v.properties.timeseries[0].data.next_1_hours.summary.symbol_code +
     '.png'
 
