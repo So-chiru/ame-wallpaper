@@ -41,4 +41,10 @@ interface WallpaperOptions {
   info_position?: {
     value: string
   }
+  notion_calendar_id?: {
+    value: string
+  }
+  notion_integration_token?: {
+    value: string
+  }
 }

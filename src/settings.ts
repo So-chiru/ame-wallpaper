@@ -100,6 +100,19 @@ export const loadURLSettings = () => {
     }
   }
 
+  let calendarID = parseURL.get('calendarID')
+  if (calendarID !== null) {
+    options['notion_calendar_id'] = {
+      value: calendarID
+    }
+  }
+
+  let notionToken = parseURL.get('notionToken')
+  if (notionToken !== null) {
+    options['notion_integration_token'] = {
+      value: notionToken
+    }
+  }
 
   events.emit('changeuser', options)
 }

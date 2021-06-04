@@ -10,11 +10,15 @@ window.settings = {
 
 import settings, { loadURLSettings } from './settings'
 import RainCanvas from './canvas'
+import * as calendarView from '@/calendar/view'
+import * as calendar from '@/calendar/api'
 
 import Slide from './slide'
 import Ripple from './ripple'
 
 import weather from './weather'
+
+let notionToken = ''
 
 const convertUnitsCF = (v: number) => {
   return weather.getScale() ? v * (9 / 5) + 32 : v
@@ -184,5 +188,17 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
 
   if (prop.info_position) {
     document.querySelector('.info').dataset.pos = prop.info_position.value
+  }
+
+  if (prop.notion_integration_token) {
+    notionToken = prop.notion_integration_token.value
+  }
+
+  if (prop.notion_calendar_id && notionToken) {
+    calendar
+      .requestDatabases(prop.notion_calendar_id.value, notionToken)
+      .then(data => {
+        calendarView.update(data)
+      })
   }
 })

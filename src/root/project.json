@@ -21,7 +21,10 @@
         "ui_useScreenRippleEffect": "Use ripple effect on click",
         "ui_useFahrenheit": "Use Fahrenheit (°F) (use Celsius (°C) if unchecked)",
         "ui_useCustomLatLon": "Custom Lat/Lon location (ex: 35.681235,139.767110)",
-        "ui_infoPosition": "Widget Position"
+        "ui_infoPosition": "Widget Position",
+        "ui_calendar": "Calendar",
+        "ui_notionDatabaseID": "Notion Calendar Database ID",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token"
       },
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
@@ -39,7 +42,10 @@
         "ui_useScreenRippleEffect": "クリックする時にリップル効果を表示する",
         "ui_useFahrenheit": "華氏(°F)で表示 (未選択時摂氏(°C)で表示)",
         "ui_useCustomLatLon": "天気情報に使う緯度/経度(ex: 35.681235,139.767110)",
-        "ui_infoPosition": "Widget Position"
+        "ui_infoPosition": "Widget Position",
+        "ui_calendar": "Calendar",
+        "ui_notionDatabaseID": "Notion Calendar Database ID",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token"
       },
       "ko-kr": {
         "ui_background": "<h3>배경</h3>",
@@ -57,13 +63,16 @@
         "ui_useScreenRippleEffect": "화면 클릭 시 물수제비 효과 사용하기",
         "ui_useFahrenheit": "섭씨 (°C) 대신 화씨 (°F) 사용",
         "ui_useCustomLatLon": "수동 위도/경도 (ex: 35.681235,139.767110)",
-        "ui_infoPosition": "위젯 위치"
+        "ui_infoPosition": "위젯 위치",
+        "ui_calendar": "캘린더",
+        "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
+        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰"
       }
     },
     "properties": {
       "logos": {
         "order": 99999,
-        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 7 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 8 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
       },
       "background_divide": {
         "order": 100,
@@ -178,6 +187,22 @@
         "type": "textinput",
         "value": "",
         "condition": "use_info.value === true"
+      },
+      "background_divide4": {
+        "order": 400,
+        "text": "ui_calendar"
+      },
+      "notion_database_id": {
+        "order": 401,
+        "text": "ui_notionDatabaseID",
+        "type": "textinput",
+        "value": ""
+      },
+      "notion_integration_token": {
+        "order": 402,
+        "text": "ui_notionIntegrationToken",
+        "type": "textinput",
+        "value": ""
       },
       "schemecolor": {
         "order": 101,
