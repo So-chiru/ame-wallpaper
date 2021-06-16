@@ -23,6 +23,9 @@ interface WallpaperOptions {
   use_music_speed_control?: {
     value: boolean
   }
+  use_twelve_hour_clock?: {
+    value: boolean
+  }
   use_info?: {
     value: boolean
   }

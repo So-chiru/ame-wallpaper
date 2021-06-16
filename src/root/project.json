@@ -17,6 +17,7 @@
         "ui_useMusicSpeedControl": "Control speed of rain to music",
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "Use time / weather info on bottom of screen",
+        "ui_useTwelveHourClock": "Use 12-hour clock",
         "ui_useSecondsInInfo": "Display seconds in time",
         "ui_useScreenRippleEffect": "Use ripple effect on click",
         "ui_useFahrenheit": "Use Fahrenheit (°F) (use Celsius (°C) if unchecked)",
@@ -30,7 +31,7 @@
         "ui_calendarUpdateRate": "Calendar Update Rate (min)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
         "ui_notionIntegrationToken": "Notion Integration Internal Token",
-        "ui_howToCalendar": "Notion calendar database setup guide is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
+        "ui_howToCalendar": "The guide for Notion calendar database setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
@@ -44,20 +45,21 @@
         "ui_useMusicSpeedControl": "音楽に合わせて雨滴速度を調節する",
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "画面の右下に時間/天気情報を表示する",
+        "ui_useTwelveHourClock": "時計を12時間で表示",
         "ui_useSecondsInInfo": "時間エリアに秒を表示する",
         "ui_useScreenRippleEffect": "クリックする時にリップル効果を表示する",
         "ui_useFahrenheit": "華氏(°F)で表示 (未選択時摂氏(°C)で表示)",
         "ui_useCustomLatLon": "天気情報に使う緯度/経度(ex: 35.681235,139.767110)",
-        "ui_infoPosition": "Widget Position",
-        "ui_calendar": "<h3>カレンダー<br></h3>",
+        "ui_infoPosition": "ウィジェットの位置",
+        "ui_calendar": "<h3>Calendar<br></h3>",
         "ui_useCalendar": "カレンダー使用",
-        "ui_calendarPositionX": "Calendar Position X (from right)",
-        "ui_calendarPositionY": "Calendar Position Y (from top)",
-        "ui_useCalendarUpdate": "Use calendar auto update",
-        "ui_calendarUpdateRate": "Calendar Update Rate (min)",
+        "ui_calendarPositionX": "カレンダーX座標（右から）",
+        "ui_calendarPositionY": "カレンダーY座標（上から）",
+        "ui_useCalendarUpdate": "カレンダーの自動更新を使用する",
+        "ui_calendarUpdateRate": "カレンダーの自動更新サイクル (分)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
         "ui_notionIntegrationToken": "Notion Integration Internal Token",
-        "ui_howToCalendar": "Notion calendar database setup guide is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
+        "ui_howToCalendar": "Notionカレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
       },
       "ko-kr": {
         "ui_background": "<h3>배경</h3>",
@@ -71,6 +73,7 @@
         "ui_useMusicSpeedControl": "음악에 맞춰 비 속도 조절",
         "ui_widgets": "<h3>위젯<br></h3>",
         "ui_useInfo": "화면 오른쪽 아래에 시간 / 날씨 표시",
+        "ui_useTwelveHourClock": "12시간 형식 시계 사용",
         "ui_useSecondsInInfo": "시간에 초 표시",
         "ui_useScreenRippleEffect": "화면 클릭 시 물수제비 효과 사용하기",
         "ui_useFahrenheit": "섭씨 (°C) 대신 화씨 (°F) 사용",
@@ -186,22 +189,28 @@
         "type": "bool",
         "value": true
       },
-      "use_seconds_info": {
+      "use_twelve_hour_clock": {
         "order": 303,
+        "text": "ui_useTwelveHourClock",
+        "type": "bool",
+        "value": false
+      },
+      "use_seconds_info": {
+        "order": 304,
         "text": "ui_useSecondsInInfo",
         "type": "bool",
         "value": true,
         "condition": "use_info.value === true"
       },
       "use_fahrenheit": {
-        "order": 304,
+        "order": 305,
         "text": "ui_useFahrenheit",
         "type": "bool",
         "value": false,
         "condition": "use_info.value === true"
       },
       "use_custom_latlon": {
-        "order": 305,
+        "order": 306,
         "text": "ui_useCustomLatLon",
         "type": "textinput",
         "value": "",

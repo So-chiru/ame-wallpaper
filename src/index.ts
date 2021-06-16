@@ -6,7 +6,8 @@ require('./images/tuyu-white.png')
 window.settings = {
   useRipple: true,
   showSeconds: true,
-  useCalendar: false
+  useCalendar: false,
+  useTwelveHour: false
 }
 
 import settings, { loadURLSettings } from './settings'
@@ -26,7 +27,7 @@ let useCalendarUpdate = false
 let calendarUpdateRate = 30
 
 const convertUnitsCF = (v: number) => {
-  return weather.getScale() ? v * (9 / 5) + 32 : v
+  return weather.getScale() ? (v * (9 / 5) + 32).toFixed(2) : v
 }
 
 const weatherUpdate = (v: Record<string, unknown>) => {
@@ -89,18 +90,46 @@ const setWeatherInterval = () => {
   }, 300000) as unknown) as number
 }
 
+let lastHour = ''
+let lastMin = ''
+let lastSec = ''
+let lastAMPM = ''
+
 const setClockInterval = () => {
   window.clockInterval = (setInterval(() => {
     let d = new Date()
-    document.querySelector('#hour')!.innerHTML = nb(d.getHours())
-    document.querySelector('#min')!.innerHTML = nb(d.getMinutes())
-    document.querySelector('#sec')!.innerHTML = window.settings.showSeconds
-      ? ' : ' + nb(d.getSeconds())
-      : ''
+
+    const hour = d.getHours()
+    const hours = nb(
+      window.settings.useTwelveHour && hour > 12 ? hour % 12 || 12 : hour
+    )
+    const mins = nb(d.getMinutes())
+    const secs = window.settings.showSeconds ? ' : ' + nb(d.getSeconds()) : ''
+    const ampm = window.settings.useTwelveHour ? (hour > 12 ? 'PM' : 'AM') : ''
+
+    if (lastHour !== hours) {
+      document.querySelector('#hour')!.innerHTML = hours
+      lastHour = hours
+    }
+
+    if (lastMin !== mins) {
+      document.querySelector('#min')!.innerHTML = mins
+      lastMin = mins
+    }
+
+    if (lastSec !== secs) {
+      document.querySelector('#sec')!.innerHTML = secs
+      lastSec = secs
+    }
+
+    if (lastAMPM !== ampm) {
+      document.querySelector('#ampm')!.innerHTML = ampm
+      lastAMPM = ampm
+    }
   }, 500) as unknown) as number
 }
 
-const nb = s => (s < 10 ? '0' + s : s)
+const nb = (s: number) => (s < 10 ? '0' + s : s.toString())
 
 window.addEventListener('DOMContentLoaded', () => {
   window.wallCanvas = new RainCanvas(document.querySelector('canvas'))
@@ -174,6 +203,10 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
 
   if (prop.use_music_speed_control) {
     window.wallCanvas.matchToMusic = prop.use_music_speed_control.value
+  }
+
+  if (prop.use_twelve_hour_clock) {
+    window.settings.useTwelveHour = prop.use_twelve_hour_clock.value
   }
 
   if (prop.use_info) {

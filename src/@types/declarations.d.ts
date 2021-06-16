@@ -28,6 +28,7 @@ declare global {
       useRipple: boolean
       showSeconds: boolean
       useCalendar: boolean
+      useTwelveHour: boolean
     }
 
     weatherInterval: number
