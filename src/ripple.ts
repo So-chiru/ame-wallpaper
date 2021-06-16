@@ -4,8 +4,8 @@ export default class Ripple {
   constructor(ev: MouseEvent) {
     this.$ = document.createElement('ripple')
 
-    this.$.style.left = ev.screenX - 50 + 'px'
-    this.$.style.top = ev.screenY - 50 + 'px'
+    this.$.style.left = ev.clientX - 50 + 'px'
+    this.$.style.top = ev.clientY - 50 + 'px'
 
     document.querySelector('body')!.appendChild(this.$)
 

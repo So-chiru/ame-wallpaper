@@ -1,13 +1,14 @@
 let useFahrenheit = false
 let savedData = {}
 let coord: number[] = []
-let randomID = Math.random()
+const randomID = Math.random()
   .toString(36)
   .substring(7)
 const httpOptions = {
   headers: {
     Origin: 'localhost',
-    'User-Agent': 'Wallpaper Engine (github.com/So-chiru/yappaAmeWallpaper) ' + randomID
+    'User-Agent':
+      'Wallpaper Engine (github.com/So-chiru/yappaAmeWallpaper) ' + randomID
   }
 }
 
@@ -47,8 +48,10 @@ const getWeather = async () => {
     return
   }
 
-  let res = await fetch(
-    `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${c[0].toFixed(4)}&lon=${c[1].toFixed(4)}`,
+  const res = await fetch(
+    `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${c[0].toFixed(
+      4
+    )}&lon=${c[1].toFixed(4)}`,
     httpOptions
   )
 
