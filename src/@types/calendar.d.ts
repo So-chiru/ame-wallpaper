@@ -3,6 +3,11 @@ import { Property } from '@/@types/notion'
 interface CalendarData {
   title: string
   id: string
+  tags: {
+    color: string
+    id: string
+    name: string
+  }[]
   date: {
     start: string
     end?: string

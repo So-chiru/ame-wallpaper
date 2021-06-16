@@ -22,9 +22,15 @@
         "ui_useFahrenheit": "Use Fahrenheit (°F) (use Celsius (°C) if unchecked)",
         "ui_useCustomLatLon": "Custom Lat/Lon location (ex: 35.681235,139.767110)",
         "ui_infoPosition": "Widget Position",
-        "ui_calendar": "Calendar",
+        "ui_calendar": "<h3>Calendar<br></h3>",
+        "ui_useCalendar": "Use Calendar",
+        "ui_calendarPositionX": "Calendar Position X (from right)",
+        "ui_calendarPositionY": "Calendar Position Y (from top)",
+        "ui_useCalendarUpdate": "Use calendar auto update",
+        "ui_calendarUpdateRate": "Calendar Update Rate (min)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
-        "ui_notionIntegrationToken": "Notion Integration Internal Token"
+        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_howToCalendar": "Notion calendar database setup guide is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
@@ -43,9 +49,15 @@
         "ui_useFahrenheit": "華氏(°F)で表示 (未選択時摂氏(°C)で表示)",
         "ui_useCustomLatLon": "天気情報に使う緯度/経度(ex: 35.681235,139.767110)",
         "ui_infoPosition": "Widget Position",
-        "ui_calendar": "Calendar",
+        "ui_calendar": "<h3>カレンダー<br></h3>",
+        "ui_useCalendar": "カレンダー使用",
+        "ui_calendarPositionX": "Calendar Position X (from right)",
+        "ui_calendarPositionY": "Calendar Position Y (from top)",
+        "ui_useCalendarUpdate": "Use calendar auto update",
+        "ui_calendarUpdateRate": "Calendar Update Rate (min)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
-        "ui_notionIntegrationToken": "Notion Integration Internal Token"
+        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_howToCalendar": "Notion calendar database setup guide is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
       "ko-kr": {
         "ui_background": "<h3>배경</h3>",
@@ -64,15 +76,22 @@
         "ui_useFahrenheit": "섭씨 (°C) 대신 화씨 (°F) 사용",
         "ui_useCustomLatLon": "수동 위도/경도 (ex: 35.681235,139.767110)",
         "ui_infoPosition": "위젯 위치",
-        "ui_calendar": "캘린더",
+        "ui_calendar": "<h3>캘린더<br></h3>",
+        "ui_useCalendar": "캘린더 사용",
+        "ui_calendarPositionX": "캘린더 위치 X (오른쪽 기준)",
+        "ui_calendarPositionY": "캘린더 위치 Y (위 기준)",
+        "ui_useCalendarUpdate": "캘린더 자동 업데이트 사용",
+        "ui_calendarUpdateRate": "캘린더 업데이트 주기 (분)",
         "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
-        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰"
+        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰",
+        "ui_howToCalendar": "Notion 캘린더 데이터 베이스 설정 가이드는 <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>여기</a>에서 확인 할 수 있습니다."
+        
       }
     },
     "properties": {
       "logos": {
         "order": 99999,
-        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 8 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 9 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/id/SochiruN/'>Sochiru</a>.</p>"
       },
       "background_divide": {
         "order": 100,
@@ -192,17 +211,67 @@
         "order": 400,
         "text": "ui_calendar"
       },
-      "notion_database_id": {
+      "use_calendar": {
         "order": 401,
+        "text": "ui_useCalendar",
+        "type": "bool",
+        "value": false
+      },
+      "notion_calendar_id": {
+        "order": 402,
         "text": "ui_notionDatabaseID",
         "type": "textinput",
         "value": ""
       },
       "notion_integration_token": {
-        "order": 402,
+        "order": 403,
         "text": "ui_notionIntegrationToken",
         "type": "textinput",
         "value": ""
+      },
+      "calendar_position_x": {
+        "fraction": true,
+        "max": 100,
+        "min": 1,
+        "order": 404,
+        "precision": 2,
+        "step": 1,
+        "text": "ui_calendarPositionX",
+        "type": "slider",
+        "value": 5
+      },
+      "calendar_position_y": {
+        "fraction": true,
+        "max": 100,
+        "min": 1,
+        "order": 405,
+        "precision": 2,
+        "step": 1,
+        "text": "ui_calendarPositionY",
+        "type": "slider",
+        "value": 5
+      },
+      "use_calendar_update": {
+        "order": 406,
+        "text": "ui_useCalendarUpdate",
+        "type": "bool",
+        "value": false
+      },
+      "calendar_update_rate": {
+        "fraction": true,
+        "max": 180,
+        "min": 5,
+        "order": 407,
+        "precision": 2,
+        "step": 1,
+        "text": "ui_calendarUpdateRate",
+        "type": "slider",
+        "value": 30,
+        "condition": "use_calendar_update.value === true"
+      },
+      "calendar_how_to": {
+        "order": 499,
+        "text": "ui_howToCalendar"
       },
       "schemecolor": {
         "order": 101,

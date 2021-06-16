@@ -17,9 +17,7 @@ export const update = (data: CalendarData[]) => {
         moreLayerSize: {
           height: 'auto'
         },
-        startDayOfWeek: 1, // monday
-        visibleWeeksCount: 5,
-        visibleScheduleCount: 4
+        startDayOfWeek: 1 // monday
       },
       scheduleView: false,
       theme: {
@@ -44,7 +42,7 @@ export const update = (data: CalendarData[]) => {
 
         // month day grid cell 'day'
         'month.holidayExceptThisMonth.color': 'rgba(255, 64, 64, 0.2)',
-        'month.dayExceptThisMonth.color': 'rgba(51, 51, 51, 0.1)',
+        'month.dayExceptThisMonth.color': 'rgba(255, 255, 255, 0.2)',
         'month.weekend.backgroundColor': 'inherit',
         'month.day.fontSize': '14px',
 
@@ -70,6 +68,8 @@ export const update = (data: CalendarData[]) => {
     })
   }
 
+  instance.clear()
+
   let schedules = []
 
   for (let i = 0; i < data.length; i++) {
@@ -83,15 +83,22 @@ export const update = (data: CalendarData[]) => {
       end = new Date(data[i].date.end || '')
     }
 
+    let borderColor = 'white'
+
+    if (data[i].tags.length) {
+      borderColor = data[i].tags[0].color
+    }
+
     schedules[i] = {
       id: data[i].id,
       calendarId: '1',
       title: data[i].title,
-      category: 'time',
+      category: 'allday',
       start: start.toUTCString(),
       end: end.toUTCString(),
-      color: 'white',
-      bgColor: 'rgba(255,255,255,0.3)',
+      color: 'rgb(255,255,255)',
+      borderColor,
+      bgColor: 'rgba(255,255,255,0.3)'
     }
   }
 

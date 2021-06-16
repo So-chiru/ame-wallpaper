@@ -12,7 +12,16 @@
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   z-index: 100;
   color: white;
-  opacity: 0.6;
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+
+  right: var(--posX, 5%);
+  top: var(--posY, 5%);
+
+  opacity: 0;
+
+  &[data-show='true'] {
+    opacity: 0.6;
+  }
 
   .tui-view-20 {
     opacity: 0.6;

@@ -5,7 +5,8 @@ require('./images/tuyu-white.png')
 
 window.settings = {
   useRipple: true,
-  showSeconds: true
+  showSeconds: true,
+  useCalendar: false
 }
 
 import settings, { loadURLSettings } from './settings'
@@ -19,6 +20,10 @@ import Ripple from './ripple'
 import weather from './weather'
 
 let notionToken = ''
+let notionDB = ''
+
+let useCalendarUpdate = false
+let calendarUpdateRate = 30
 
 const convertUnitsCF = (v: number) => {
   return weather.getScale() ? v * (9 / 5) + 32 : v
@@ -50,6 +55,32 @@ const weatherUpdate = (v: Record<string, unknown>) => {
     v.properties.timeseries[0].data.instant.details.cloud_area_fraction + '%'
 
   weather.setData(v)
+}
+
+const calendarUpdate = () => {
+  console.log('Updating calendar...')
+
+  calendar.requestDatabases(notionDB, notionToken).then(data => {
+    calendarView.update(data)
+  })
+}
+
+const setCalendarInterval = (rate: number) => {
+  if (
+    window.calendarInterval !== null &&
+    window.calendarInterval !== undefined
+  ) {
+    console.log('Previous calendar update interval has been cleared.')
+
+    clearInterval(window.calendarInterval)
+  }
+
+  window.calendarInterval = (setInterval(
+    calendarUpdate,
+    1000 * 60 * rate
+  ) as unknown) as number
+
+  console.log('Calendar will be updated every ' + rate + ' minutes.')
 }
 
 const setWeatherInterval = () => {
@@ -190,15 +221,52 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
     document.querySelector('.info').dataset.pos = prop.info_position.value
   }
 
+  if (prop.calendar_position_x) {
+    document
+      .querySelector('.calendar')
+      .style.setProperty('--posX', prop.calendar_position_x.value + '%')
+  }
+
+  if (prop.calendar_position_y) {
+    document
+      .querySelector('.calendar')
+      .style.setProperty('--posY', prop.calendar_position_y.value + '%')
+  }
+
   if (prop.notion_integration_token) {
     notionToken = prop.notion_integration_token.value
   }
 
-  if (prop.notion_calendar_id && notionToken) {
-    calendar
-      .requestDatabases(prop.notion_calendar_id.value, notionToken)
-      .then(data => {
-        calendarView.update(data)
-      })
+  if (prop.notion_calendar_id) {
+    notionDB = prop.notion_calendar_id.value
+  }
+
+  if (prop.use_calendar) {
+    document.querySelector('.calendar').dataset.show = prop.use_calendar.value
+    window.settings.useCalendar = prop.use_calendar.value
+
+    if (window.settings.useCalendar && notionDB && notionToken) {
+      calendarUpdate()
+    }
+  }
+
+  if (prop.use_calendar_update) {
+    useCalendarUpdate = prop.use_calendar_update.value
+
+    clearInterval(window.calendarInterval)
+
+    if (useCalendarUpdate) {
+      setCalendarInterval(calendarUpdateRate)
+    }
+  }
+
+  if (prop.calendar_update_rate) {
+    calendarUpdateRate = prop.calendar_update_rate.value || 30
+
+    clearInterval(window.calendarInterval)
+
+    if (useCalendarUpdate) {
+      setCalendarInterval(calendarUpdateRate)
+    }
   }
 })

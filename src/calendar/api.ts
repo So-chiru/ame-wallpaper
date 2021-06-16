@@ -23,8 +23,13 @@ const dateFieldCheck = (id: string): boolean => {
   return new Set<string>(['날짜', 'Date', 'date']).has(id)
 }
 
+const tagsFieldCheck = (id: string): boolean => {
+  return new Set<string>(['태그', 'Tags', 'tags', 'tag', 'Tag']).has(id)
+}
+
 const parseDatabase = (data: Database): CalendarData => {
   let title = ''
+  let tags: unknown[] = []
   let date: { start: string; end?: string } = { start: '', end: '' }
   let done: boolean | undefined
 
@@ -36,6 +41,8 @@ const parseDatabase = (data: Database): CalendarData => {
 
     if (item.id === 'title' && item.type === 'title') {
       title = (item.title[0] as RichTextBaseInput).plain_text || ''
+    } else if (item.type === 'multi_select' && tagsFieldCheck(keyName)) {
+      tags = (item.multi_select as unknown) as unknown[]
     } else if (item.type === 'checkbox' && doneFieldCheck(keyName)) {
       done = (item.checkbox as unknown) as boolean
     } else if (item.type === 'date' && dateFieldCheck(keyName)) {
@@ -46,6 +53,7 @@ const parseDatabase = (data: Database): CalendarData => {
   const result = {
     id: data.id,
     title,
+    tags,
     date,
     done,
     properties: data.properties

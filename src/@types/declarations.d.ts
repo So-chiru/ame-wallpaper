@@ -27,9 +27,11 @@ declare global {
     settings: {
       useRipple: boolean
       showSeconds: boolean
+      useCalendar: boolean
     }
 
     weatherInterval: number
     clockInterval: number
+    calendarInterval: number
   }
 }
