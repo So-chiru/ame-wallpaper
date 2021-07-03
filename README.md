@@ -26,6 +26,7 @@ If you want to use wallpaper on other desktop wallpaper client like [Plash](http
 | fahrenheit   | Whether to use Fahrenheit unit on weather widget.                         | boolean | false   |
 | ripple       | Whether to use ripple animation on page click.                            | boolean | false   |
 | latlon       | Custom Latitude, longitude coordinate. (XX.XX, XX.XX)                     | string  | -       |
+| useCalendar  | Whether to use calendar                                                   | boolean | -       |
 | notionToken  | Notion API Token for calendar. For detail, check out the paragraph below. | string  | -       |
 | calendarID   | Notion calendar database ID. For detail, check out the paragraph below.   | string  | -       |
 

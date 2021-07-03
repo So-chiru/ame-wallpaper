@@ -100,6 +100,14 @@ export const loadURLSettings = () => {
     }
   }
 
+  let useCalendar = parseURL.get('useCalendar')
+  if (useCalendar !== null) {
+    options['use_calendar'] = {
+      value: useCalendar === 'true'
+    }
+  }
+
+
   let calendarID = parseURL.get('calendarID')
   if (calendarID !== null) {
     options['notion_calendar_id'] = {
