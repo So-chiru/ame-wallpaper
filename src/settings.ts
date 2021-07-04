@@ -107,7 +107,6 @@ export const loadURLSettings = () => {
     }
   }
 
-
   let calendarID = parseURL.get('calendarID')
   if (calendarID !== null) {
     options['notion_calendar_id'] = {

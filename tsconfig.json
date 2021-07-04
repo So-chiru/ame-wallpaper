@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "jsx": "react-jsx",
     "strict": true,
     "target": "esnext",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@g/*": ["generator_src/*"],
+      "*": ["generator_src/@types/*"]
     },
     "baseUrl": "./",
     "esModuleInterop": true,

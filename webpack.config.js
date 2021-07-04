@@ -12,7 +12,8 @@ module.exports = env => {
   return {
     mode: dev ? 'development' : 'production',
     entry: {
-      app: ['babel-polyfill', path.resolve('src', 'index.ts')]
+      app: ['babel-polyfill', path.resolve('src', 'index.ts')],
+      generator: ['babel-polyfill', path.resolve('generator_src', 'index.tsx')]
     },
     output: {
       publicPath: '/',
@@ -24,11 +25,15 @@ module.exports = env => {
       rules: [
         {
           exclude: /(node_modules|_old_src|(sa|sc|c)ss)/,
-          test: /\.js|\.ts$/,
+          test: /\.js|\.tsx?$/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-typescript']
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                '@babel/preset-typescript'
+              ]
             }
           }
         },
@@ -65,7 +70,7 @@ module.exports = env => {
       minimize: true,
       minimizer: [
         new TerserPlugin({
-          test: /\.js(\?.*)?$|\.ts/i,
+          test: /\.js(\?.*)?$|\.tsx?/i,
           terserOptions: {
             mangle: true,
             output: {
@@ -88,6 +93,11 @@ module.exports = env => {
         filename: 'index.html',
         inject: false
       }),
+      new HtmlWebpackPlugin({
+        template: './src/views/generator.pug',
+        filename: 'generator.html',
+        inject: false
+      }),
       new CopyWebpackPlugin({
         patterns: [{ from: 'src/root', to: '.' }]
       }),
@@ -97,10 +107,11 @@ module.exports = env => {
       })
     ],
     resolve: {
-      extensions: ['.js', '.ts', '.css'],
+      extensions: ['.js', '.ts', '.tsx', '.css'],
       modules: ['node_modules'],
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        '@': path.resolve(__dirname, 'src'),
+        '@g': path.resolve(__dirname, 'generator_src')
       }
     }
   }

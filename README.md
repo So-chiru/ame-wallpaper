@@ -10,6 +10,10 @@ For fetching weather based on the location, this project uses [MET Norway Weathe
 
 If you want to use wallpaper on other desktop wallpaper client like [Plash](https://github.com/sindresorhus/Plash), try this [web version](https://yappa-ame-wallpaper.vercel.app/).
 
+## URL Param Settings Generator
+
+Available in [here](https://yappa-ame-wallpaper.vercel.app/generator.html).
+
 ### Available URL Params
 
 | Key          | Description                                                               | Type    | Default |
