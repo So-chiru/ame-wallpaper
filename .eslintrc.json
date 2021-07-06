@@ -5,14 +5,23 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-empty-function": "off",
@@ -21,7 +30,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "linebreak-style": "off",
     "no-use-before-define": "off",
-    "camelcase": 2,
+    "camelcase": "off",
     "comma-dangle": "off",
     "semi": ["error", "never"],
     "react/react-in-jsx-scope": "off",

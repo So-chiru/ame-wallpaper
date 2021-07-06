@@ -25,8 +25,14 @@ export const loadURLSettings = () => {
 
   let blur = parseURL.get('blur')
   if (blur !== null) {
+    const numberMatch = blur.match(/[0-9]+/g)
     options['background_blur'] = {
-      value: blur === 'true'
+      value:
+        blue === 'true'
+          ? 40
+          : blur !== 'false' && numberMatch && numberMatch[0] == blur
+          ? Number(blur)
+          : 0
     }
   }
 

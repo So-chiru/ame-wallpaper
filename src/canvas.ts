@@ -67,9 +67,13 @@ export default class RainCanvas {
     )
   }
 
-  music (arr: number[]) {
-    // let
+  setMusicData (arr: number[]) {
     this.sounds = arr
+  }
+
+  resize () {
+    this.$.width = document.body.offsetWidth
+    this.$.height = document.body.offsetHeight
   }
 
   bass () {
@@ -90,8 +94,8 @@ export default class RainCanvas {
 
     this.$ctx.clearRect(0, 0, this.$.width, this.$.height)
 
-    for (var i = 0; i < this.rains.length; i++) {
-      let rain = this.rains[i]
+    for (let i = 0; i < this.rains.length; i++) {
+      const rain = this.rains[i]
 
       rain.y += this.speed
 

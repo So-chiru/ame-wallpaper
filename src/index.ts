@@ -145,12 +145,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+  window.addEventListener('resize', () => {
+    window.wallCanvas.resize()
+  })
+
   setWeatherInterval()
   setClockInterval()
 
   if (window.wallpaperRegisterAudioListener) {
     window.wallpaperRegisterAudioListener(h => {
-      window.wallCanvas.music(h)
+      window.wallCanvas.setMusicData(h)
     })
   }
 
@@ -180,8 +184,13 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
   }
 
   if (prop.background_blur) {
-    document.querySelector('tuyu-bg-before').dataset.blur =
-      prop.background_blur.value
+    const tuyuBGBefore = document.querySelector('tuyu-bg-before')
+
+    tuyuBGBefore.dataset.blur = prop.background_blur.value
+    ;(tuyuBGBefore as HTMLElement).setAttribute(
+      'style',
+      '--blur-strength: ' + prop.background_blur.value + 'px'
+    )
   }
 
   if (prop.use_logo) {

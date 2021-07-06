@@ -8,7 +8,7 @@
       "en-us": {
         "ui_background": "<h3>Background<br></h3>",
         "ui_backgroundImageFile": "Background Image File",
-        "ui_backgroundBlur": "Use Background Blur",
+        "ui_backgroundBlur": "Use Background Blur (0 to disable)",
         "ui_useLogo": "Use Logo",
         "ui_logoSlideDelay": "Logo Slide Delay",
         "ui_particles": "<h3>Particles<br></h3>",
@@ -36,7 +36,7 @@
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
         "ui_backgroundImageFile": "背景として使用するイメージファイル",
-        "ui_backgroundBlur": "背景ぼかし効果を使用",
+        "ui_backgroundBlur": "背景ぼかし効果を使用 (0 to disable)",
         "ui_useLogo": "ロゴ使用",
         "ui_logoSlideDelay": "ロゴを変更する遅延時間",
         "ui_particles": "<h3>Particles<br></h3>",
@@ -64,7 +64,7 @@
       "ko-kr": {
         "ui_background": "<h3>배경</h3>",
         "ui_backgroundImageFile": "배경 이미지 파일",
-        "ui_backgroundBlur": "배경 블러 사용",
+        "ui_backgroundBlur": "배경 블러 사용 (0으로 비활성화)",
         "ui_useLogo": "로고 사용",
         "ui_logoSlideDelay": "로고 전환 지연 시간",
         "ui_particles": "<h3>파티클<br></h3>",
@@ -88,7 +88,6 @@
         "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
         "ui_notionIntegrationToken": "Notion 통합 내부용 토큰",
         "ui_howToCalendar": "Notion 캘린더 데이터 베이스 설정 가이드는 <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>여기</a>에서 확인 할 수 있습니다."
-        
       }
     },
     "properties": {
@@ -109,8 +108,12 @@
       "background_blur": {
         "order": 103,
         "text": "ui_backgroundBlur",
-        "type": "bool",
-        "value": true
+        "max": 60,
+        "min": 0,
+        "precision": 2,
+        "step": 1,
+        "type": "slider",
+        "value": 40
       },
       "use_logo": {
         "fraction": true,

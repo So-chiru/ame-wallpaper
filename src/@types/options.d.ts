@@ -6,7 +6,7 @@ interface WallpaperOptions {
     value: string
   }
   background_blur?: {
-    value: boolean
+    value: number
   }
   use_logo?: {
     value: boolean

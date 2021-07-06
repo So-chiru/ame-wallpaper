@@ -2,6 +2,10 @@
 @import 'fonts.scss';
 @import 'ripple.scss';
 
+loader {
+  pointer-events: none;
+}
+
 loader[data-done='true'] {
   opacity: 0 !important;
 }
@@ -42,8 +46,8 @@ tuyu-bg-before {
     min-height: 100%;
   }
 
-  &[data-blur='true'] {
-    filter: saturate(80%) blur(40px);
+  &:not([data-blur='0']) {
+    filter: saturate(80%) blur(var(--blur-strength, 40px));
   }
 }
 

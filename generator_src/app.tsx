@@ -16,9 +16,9 @@ export const defaultWallpaperOptions: WallpaperURLOption[] = [
   },
   {
     name: 'blur',
-    description: 'Whether to use blurring background image.',
-    type: 'boolean',
-    default: true
+    description: 'Whether to use blurring background image. (0 to disable)',
+    type: 'number',
+    default: 40
   },
   {
     name: 'logo',
