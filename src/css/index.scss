@@ -47,7 +47,7 @@ tuyu-bg-before {
   }
 
   &:not([data-blur='0']) {
-    filter: saturate(80%) blur(var(--blur-strength, 40px));
+    filter: saturate(120%) blur(var(--blur-strength, 40px));
   }
 }
 

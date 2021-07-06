@@ -19,6 +19,8 @@ export const update = (data: CalendarData[]) => {
         },
         startDayOfWeek: 1 // monday
       },
+      isReadOnly: true,
+      useDetailPopup: true,
       scheduleView: false,
       theme: {
         'common.border': '0px solid #e5e5e5',
@@ -94,6 +96,10 @@ export const update = (data: CalendarData[]) => {
       calendarId: '1',
       title: data[i].title,
       category: 'allday',
+      isReadOnly: true,
+      body: `${start.toLocaleDateString()} - ${start.toLocaleTimeString()} - ${end.toLocaleDateString()} ${end.toLocaleTimeString()}${
+        data[i].memo ? ` (${data[i].memo})` : ''
+      }`,
       start: start.toUTCString(),
       end: end.toUTCString(),
       color: 'rgb(255,255,255)',

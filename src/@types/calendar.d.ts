@@ -13,5 +13,6 @@ interface CalendarData {
     end?: string
   }
   done?: boolean
+  memo?: string
   properties: Record<string, Property>
 }

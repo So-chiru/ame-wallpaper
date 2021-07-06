@@ -9,6 +9,7 @@
     "dev-app": "webpack --watch --env DIST_PATH='C:/Program Files (x86)/Steam/steamapps/common/wallpaper_engine/projects/myprojects/index'",
     "serve": "webpack serve",
     "build": "webpack build --mode production",
+    "build-app": "webpack build --mode production --env DIST_PATH='C:/Program Files (x86)/Steam/steamapps/common/wallpaper_engine/projects/myprojects/index'",
     "lint": "eslint -c .eslintrc.json './src/**/*.{ts,tsx,js,jsx}'",
     "lint-fix": "eslint --fix -c .eslintrc.json './src/**/*.{ts,tsx,js,jsx}'"
   },

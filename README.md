@@ -58,6 +58,8 @@ After the integration creation, Copy `Internal Integration Token` and pass a tok
 
 And in your calendar page, click `Share` button and add integration that you made right before. and also, click the `Copy Link` button and pass a database URL ID to URL parameter `calendarID`.
 
+For detailed guide, [here is an article for you](https://www.notion.so/How-to-setup-notion-calendar-for-yappaAme-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573).
+
 ## Build
 
 ```sh
