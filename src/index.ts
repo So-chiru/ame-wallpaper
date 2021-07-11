@@ -215,6 +215,14 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
     window.slide.customImage = file
   }
 
+  if (prop.custom_logo_image_url) {
+    const url = prop.custom_logo_image_url.value
+    ;(document.getElementById('custom_logo') as HTMLImageElement).src =
+      url || ''
+
+    window.slide.customImage = url
+  }
+
   if (prop.custom_logo_image_scale) {
     ;(document.getElementById('custom_logo') as HTMLImageElement).setAttribute(
       'style',
