@@ -102,7 +102,8 @@ span {
   }
 
   .contrast-ame,
-  .contrast-tuyu {
+  .contrast-tuyu,
+  .contrast-custom {
     position: absolute;
     margin: auto;
   }
@@ -122,6 +123,14 @@ span {
 
 .contrast-tuyu {
   height: 13vh;
+}
+
+.contrast-custom {
+  opacity: 0;
+}
+
+.contrast-custom {
+  transform: scale(var(--scale, 1));
 }
 
 .info {

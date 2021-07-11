@@ -194,12 +194,32 @@ settings.on('changeuser', (prop: WallpaperOptions) => {
   }
 
   if (prop.use_logo) {
-    window.slide[prop.use_logo.value ? 'start' : 'stop']()
+    window.slide.enable = prop.use_logo.value
     window.wallCanvas.useLogo = prop.use_logo.value
   }
 
   if (prop.slide_delay) {
     window.slide.delay = prop.slide_delay.value
+  }
+
+  if (prop.slide_logo_image) {
+    window.slide.pinImage = prop.slide_logo_image.value
+  }
+
+  if (prop.custom_logo_image) {
+    const file = prop.custom_logo_image.value
+    ;(document.getElementById('custom_logo') as HTMLImageElement).src = file
+      ? 'file:///' + file
+      : ''
+
+    window.slide.customImage = file
+  }
+
+  if (prop.custom_logo_image_scale) {
+    ;(document.getElementById('custom_logo') as HTMLImageElement).setAttribute(
+      'style',
+      `--scale: ${prop.custom_logo_image_scale.value / 100}`
+    )
   }
 
   if (prop.max_rain) {

@@ -11,6 +11,9 @@
         "ui_backgroundBlur": "Use Background Blur (0 to disable)",
         "ui_useLogo": "Use Logo",
         "ui_logoSlideDelay": "Logo Slide Delay",
+        "ui_logoSlideImage": "Pin Logo Image (0: Disable, 1-2: Default Image, 3: Custom Image)",
+        "ui_logoSlideCustom": "Custom Logo Image",
+        "ui_logoSlideCustomScale": "Custom Logo Image Scale",
         "ui_particles": "<h3>Particles<br></h3>",
         "ui_maxRains": "Max rain particles count",
         "ui_speedRains": "Speed of rain",
@@ -36,9 +39,12 @@
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
         "ui_backgroundImageFile": "背景として使用するイメージファイル",
-        "ui_backgroundBlur": "背景ぼかし効果を使用 (0 to disable)",
+        "ui_backgroundBlur": "背景ぼかし効果を使用 (0: 無効)",
         "ui_useLogo": "ロゴ使用",
         "ui_logoSlideDelay": "ロゴを変更する遅延時間",
+        "ui_logoSlideImage": "ロゴイメージ固定  (0: 無効, 1-2: 基本イメージ, 3: ユーザー設定イメージ)",
+        "ui_logoSlideCustom": "ユーザー設定のロゴイメージ",
+        "ui_logoSlideCustomScale": "ユーザー設定のロゴイメージの倍率",
         "ui_particles": "<h3>Particles<br></h3>",
         "ui_maxRains": "最大雨滴パーティクル数",
         "ui_speedRains": "雨滴速度",
@@ -67,6 +73,9 @@
         "ui_backgroundBlur": "배경 블러 사용 (0으로 비활성화)",
         "ui_useLogo": "로고 사용",
         "ui_logoSlideDelay": "로고 전환 지연 시간",
+        "ui_logoSlideImage": "로고 이미지 고정 (0: 비활성화, 1-2: 기본 이미지, 3: 커스텀 이미지)",
+        "ui_logoSlideCustom": "커스텀 로고 이미지",
+        "ui_logoSlideCustomScale": "커스텀 로고 이미지 배율",
         "ui_particles": "<h3>파티클<br></h3>",
         "ui_maxRains": "빗방울 파티클 최대 갯수",
         "ui_speedRains": "비 속도",
@@ -93,7 +102,7 @@
     "properties": {
       "logos": {
         "order": 99999,
-        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 10 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/profiles/76561198273773489'>Sochiru</a>.</p>"
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 11 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/profiles/76561198273773489'>Sochiru</a>.</p>"
       },
       "background_divide": {
         "order": 100,
@@ -131,10 +140,42 @@
         "step": 1,
         "text": "ui_logoSlideDelay",
         "type": "slider",
-        "value": 10000
+        "value": 10000,
+        "condition": "use_logo.value === true && slide_logo_image.value === 0"
+      },
+      "slide_logo_image": {
+        "fraction": true,
+        "max": 3,
+        "min": 0,
+        "order": 106,
+        "precision": 2,
+        "step": 1,
+        "text": "ui_logoSlideImage",
+        "type": "slider",
+        "value": 0,
+        "condition": "use_logo.value === true"
+      },
+      "custom_logo_image": {
+        "order": 107,
+        "text": "ui_logoSlideCustom",
+        "type": "file",
+        "value": "",
+        "condition": "use_logo.value === true && slide_logo_image.value === 3"
+      },
+      "custom_logo_image_scale": {
+        "fraction": true,
+        "max": 200,
+        "min": 0,
+        "order": 108,
+        "precision": 2,
+        "step": 1,
+        "text": "ui_logoSlideCustomScale",
+        "type": "slider",
+        "value": 100,
+        "condition": "use_logo.value === true && slide_logo_image.value === 3"
       },
       "use_ripple_effect": {
-        "order": 106,
+        "order": 109,
         "text": "ui_useScreenRippleEffect",
         "type": "bool",
         "value": true

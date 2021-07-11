@@ -14,6 +14,15 @@ interface WallpaperOptions {
   slide_delay?: {
     value: number
   }
+  slide_logo_image?: {
+    value: number
+  }
+  custom_logo_image?: {
+    value: string
+  }
+  custom_logo_image_scale?: {
+    value: number
+  }
   max_rain?: {
     value: number
   }
