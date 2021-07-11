@@ -1,11 +1,11 @@
 import Calendar from 'tui-calendar'
 
 import 'tui-calendar/dist/tui-calendar.css'
-import '@/css/calendar.scss'
+import '@o/css/calendar.scss'
 
 let instance: Calendar
 
-import { CalendarData } from '@/@types/calendar'
+import { CalendarData } from '@o/@types/calendar'
 
 export const update = (data: CalendarData[]) => {
   if (!instance) {

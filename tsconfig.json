@@ -6,6 +6,7 @@
     "target": "esnext",
     "paths": {
       "@/*": ["src/*"],
+      "@o/*": ["osrc/*"],
       "@g/*": ["generator_src/*"],
       "*": ["generator_src/@types/*"]
     },

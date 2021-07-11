@@ -26,6 +26,8 @@
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^1.6.2",
     "node-sass": "^6.0.1",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sass-loader": "^11.1.1",

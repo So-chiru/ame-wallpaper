@@ -1,10 +1,10 @@
-import { CalendarData } from '@/@types/calendar'
+import { CalendarData } from '@o/@types/calendar'
 import {
   PaginatedList,
   Database,
   ErrorResponse,
   RichTextBaseInput
-} from '@/@types/notion'
+} from '@o/@types/notion'
 
 const notionCalendarRequestOption = {
   method: 'POST',

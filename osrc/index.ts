@@ -12,8 +12,8 @@ window.settings = {
 
 import settings, { loadURLSettings } from './settings'
 import RainCanvas from './canvas'
-import * as calendarView from '@/calendar/view'
-import * as calendar from '@/calendar/api'
+import * as calendarView from '@o/calendar/view'
+import * as calendar from '@o/calendar/api'
 
 import Slide from './slide'
 import Ripple from './ripple'

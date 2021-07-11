@@ -1,5 +1,5 @@
-import RainCanvas from '@/canvas'
-import Slide from '@/slide'
+import RainCanvas from '@o/canvas'
+import Slide from '@o/slide'
 
 export {}
 

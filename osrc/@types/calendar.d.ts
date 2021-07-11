@@ -1,4 +1,4 @@
-import { Property } from '@/@types/notion'
+import { Property } from '@o/@types/notion'
 
 interface CalendarData {
   title: string
