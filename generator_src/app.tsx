@@ -27,6 +27,27 @@ export const defaultWallpaperOptions: WallpaperURLOption[] = [
     default: true
   },
   {
+    name: 'pinLogo',
+    description:
+      'Pinning logo to single image. (0: Disable, 1-2: Default Image, 3: Custom Image',
+    type: 'number',
+    default: 0
+  },
+  {
+    name: 'customLogo',
+    description:
+      "Custom Logo URL (You can't use local file. To use local image, upload to somewhere that supports URL hot linking.)",
+    type: 'string',
+    default: undefined
+  },
+  {
+    name: 'customLogoScale',
+    description: 'Custom Logo Scale',
+    type: 'number',
+    default: 100
+  },
+
+  {
     name: 'slideDelay',
     description: 'Delay between logo slide. (ms)',
     type: 'number',

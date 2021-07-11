@@ -43,6 +43,27 @@ export const loadURLSettings = () => {
     }
   }
 
+  let pinLogo = parseURL.get('pinLogo')
+  if (pinLogo !== null) {
+    options['slide_logo_image'] = {
+      value: Number(pinLogo)
+    }
+  }
+
+  let customLogoURL = parseURL.get('customLogo')
+  if (customLogoURL !== null) {
+    options['custom_logo_image_url'] = {
+      value: customLogoURL
+    }
+  }
+
+  let customLogoScale = parseURL.get('customLogoScale')
+  if (customLogoScale !== null) {
+    options['custom_logo_image_scale'] = {
+      value: Number(customLogoScale)
+    }
+  }
+
   let delay = parseURL.get('slideDelay')
   if (delay !== null) {
     options['slide_delay'] = {

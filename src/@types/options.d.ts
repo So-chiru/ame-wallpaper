@@ -20,6 +20,9 @@ interface WallpaperOptions {
   custom_logo_image?: {
     value: string
   }
+  custom_logo_image_url?: {
+    value: string
+  }
   custom_logo_image_scale?: {
     value: number
   }
