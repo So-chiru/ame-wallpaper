@@ -8,7 +8,7 @@
       "@/*": ["src/*"],
       "@o/*": ["osrc/*"],
       "@g/*": ["generator_src/*"],
-      "*": ["generator_src/@types/*"]
+      "*": ["generator_src/@types/*", "src/@types/*"]
     },
     "baseUrl": "./",
     "esModuleInterop": true,

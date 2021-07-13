@@ -1,0 +1,322 @@
+{
+  "contentrating": "Everyone",
+  "description": "ツユのやっぱり雨は降るんだね",
+  "file": "index.html",
+  "general": {
+    "supportsaudioprocessing": true,
+    "localization": {
+      "en-us": {
+        "ui_background": "<h3>Background<br></h3>",
+        "ui_backgroundImageFile": "Background Image File",
+        "ui_backgroundBlur": "Use Background Blur (0 to disable)",
+        "ui_useLogo": "Use Logo",
+        "ui_logoSlideDelay": "Logo Slide Delay",
+        "ui_logoSlideImage": "Pin Logo Image (0: Disable, 1-2: Default Image, 3: Custom Image)",
+        "ui_logoSlideCustom": "Custom Logo Image",
+        "ui_logoSlideCustomScale": "Custom Logo Image Scale",
+        "ui_particles": "<h3>Particles<br></h3>",
+        "ui_maxRains": "Max rain particles count",
+        "ui_speedRains": "Speed of rain",
+        "ui_useMusicSpeedControl": "Control speed of rain to music",
+        "ui_widgets": "<h3>Widget<br></h3>",
+        "ui_useInfo": "Use time / weather info on bottom of screen",
+        "ui_useTwelveHourClock": "Use 12-hour clock",
+        "ui_useSecondsInInfo": "Display seconds in time",
+        "ui_useScreenRippleEffect": "Use ripple effect on click",
+        "ui_useFahrenheit": "Use Fahrenheit (°F) (use Celsius (°C) if unchecked)",
+        "ui_useCustomLatLon": "Custom Lat/Lon location (ex: 35.681235,139.767110)",
+        "ui_infoPosition": "Widget Position",
+        "ui_calendar": "<h3>Calendar<br></h3>",
+        "ui_useCalendar": "Use Calendar",
+        "ui_calendarPositionX": "Calendar Position X (from right)",
+        "ui_calendarPositionY": "Calendar Position Y (from top)",
+        "ui_useCalendarUpdate": "Use calendar auto update",
+        "ui_calendarUpdateRate": "Calendar Update Rate (min)",
+        "ui_notionDatabaseID": "Notion Calendar Database ID",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_howToCalendar": "The guide for Notion calendar setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
+      },
+      "ja-jp": {
+        "ui_background": "<h3>Background</h3>",
+        "ui_backgroundImageFile": "背景として使用するイメージファイル",
+        "ui_backgroundBlur": "背景ぼかし効果を使用 (0: 無効)",
+        "ui_useLogo": "ロゴ使用",
+        "ui_logoSlideDelay": "ロゴを変更する遅延時間",
+        "ui_logoSlideImage": "ロゴイメージ固定  (0: 無効, 1-2: 基本イメージ, 3: ユーザー設定イメージ)",
+        "ui_logoSlideCustom": "ユーザー設定のロゴイメージ",
+        "ui_logoSlideCustomScale": "ユーザー設定のロゴイメージの倍率",
+        "ui_particles": "<h3>Particles<br></h3>",
+        "ui_maxRains": "最大雨滴パーティクル数",
+        "ui_speedRains": "雨滴速度",
+        "ui_useMusicSpeedControl": "音楽に合わせて雨滴速度を調節する",
+        "ui_widgets": "<h3>Widget<br></h3>",
+        "ui_useInfo": "画面の右下に時間/天気情報を表示する",
+        "ui_useTwelveHourClock": "時計を12時間で表示",
+        "ui_useSecondsInInfo": "時間エリアに秒を表示する",
+        "ui_useScreenRippleEffect": "クリックする時にリップル効果を表示する",
+        "ui_useFahrenheit": "華氏(°F)で表示 (未選択時摂氏(°C)で表示)",
+        "ui_useCustomLatLon": "天気情報に使う緯度/経度(ex: 35.681235,139.767110)",
+        "ui_infoPosition": "ウィジェットの位置",
+        "ui_calendar": "<h3>Calendar<br></h3>",
+        "ui_useCalendar": "カレンダー使用",
+        "ui_calendarPositionX": "カレンダーX座標（右から）",
+        "ui_calendarPositionY": "カレンダーY座標（上から）",
+        "ui_useCalendarUpdate": "カレンダーの自動更新を使用する",
+        "ui_calendarUpdateRate": "カレンダーの自動更新サイクル (分)",
+        "ui_notionDatabaseID": "Notion Calendar Database ID",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_howToCalendar": "Notionカレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
+      },
+      "ko-kr": {
+        "ui_background": "<h3>배경</h3>",
+        "ui_backgroundImageFile": "배경 이미지 파일",
+        "ui_backgroundBlur": "배경 블러 사용 (0으로 비활성화)",
+        "ui_useLogo": "로고 사용",
+        "ui_logoSlideDelay": "로고 전환 지연 시간",
+        "ui_logoSlideImage": "로고 이미지 고정 (0: 비활성화, 1-2: 기본 이미지, 3: 커스텀 이미지)",
+        "ui_logoSlideCustom": "커스텀 로고 이미지",
+        "ui_logoSlideCustomScale": "커스텀 로고 이미지 배율",
+        "ui_particles": "<h3>파티클<br></h3>",
+        "ui_maxRains": "빗방울 파티클 최대 갯수",
+        "ui_speedRains": "비 속도",
+        "ui_useMusicSpeedControl": "음악에 맞춰 비 속도 조절",
+        "ui_widgets": "<h3>위젯<br></h3>",
+        "ui_useInfo": "화면 오른쪽 아래에 시간 / 날씨 표시",
+        "ui_useTwelveHourClock": "12시간 형식 시계 사용",
+        "ui_useSecondsInInfo": "시간에 초 표시",
+        "ui_useScreenRippleEffect": "화면 클릭 시 물수제비 효과 사용하기",
+        "ui_useFahrenheit": "섭씨 (°C) 대신 화씨 (°F) 사용",
+        "ui_useCustomLatLon": "수동 위도/경도 (ex: 35.681235,139.767110)",
+        "ui_infoPosition": "위젯 위치",
+        "ui_calendar": "<h3>캘린더<br></h3>",
+        "ui_useCalendar": "캘린더 사용",
+        "ui_calendarPositionX": "캘린더 위치 X (오른쪽 기준)",
+        "ui_calendarPositionY": "캘린더 위치 Y (위 기준)",
+        "ui_useCalendarUpdate": "캘린더 자동 업데이트 사용",
+        "ui_calendarUpdateRate": "캘린더 업데이트 주기 (분)",
+        "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
+        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰",
+        "ui_howToCalendar": "Notion 캘린더 설정 가이드는 <a href='https://www.notion.so/b693231f298b44cdb7ed4adabbddb226'>여기</a>에서 확인 할 수 있습니다."
+      }
+    },
+    "properties": {
+      "logos": {
+        "order": 99999,
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 11 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/profiles/76561198273773489'>Sochiru</a>.</p>"
+      },
+      "background_divide": {
+        "order": 100,
+        "text": "ui_background"
+      },
+      "background_image_file": {
+        "order": 102,
+        "text": "ui_backgroundImageFile",
+        "type": "file",
+        "value": ""
+      },
+      "background_blur": {
+        "order": 103,
+        "text": "ui_backgroundBlur",
+        "max": 60,
+        "min": 0,
+        "step": 1,
+        "type": "slider",
+        "value": 40
+      },
+      "use_logo": {
+        "order": 104,
+        "text": "ui_useLogo",
+        "type": "bool",
+        "value": true
+      },
+      "slide_delay": {
+        "max": 60000,
+        "min": 0,
+        "order": 105,
+        "step": 1,
+        "text": "ui_logoSlideDelay",
+        "type": "slider",
+        "value": 10000,
+        "condition": "use_logo.value === true && slide_logo_image.value === 0"
+      },
+      "slide_logo_image": {
+        "max": 3,
+        "min": 0,
+        "order": 106,
+        "step": 1,
+        "text": "ui_logoSlideImage",
+        "type": "slider",
+        "value": 0,
+        "condition": "use_logo.value === true"
+      },
+      "custom_logo_image": {
+        "order": 107,
+        "text": "ui_logoSlideCustom",
+        "type": "file",
+        "value": "",
+        "condition": "use_logo.value === true && slide_logo_image.value === 3"
+      },
+      "custom_logo_image_scale": {
+        "max": 200,
+        "min": 0,
+        "order": 108,
+        "step": 1,
+        "text": "ui_logoSlideCustomScale",
+        "type": "slider",
+        "value": 100,
+        "condition": "use_logo.value === true && slide_logo_image.value === 3"
+      },
+      "use_ripple_effect": {
+        "order": 109,
+        "text": "ui_useScreenRippleEffect",
+        "type": "bool",
+        "value": true
+      },
+      "background_divide2": {
+        "order": 200,
+        "text": "ui_particles"
+      },
+      "max_rain": {
+        "max": 2000,
+        "min": 0,
+        "order": 201,
+        "step": 1,
+        "text": "ui_maxRains",
+        "type": "slider",
+        "value": 400
+      },
+      "speed_rain": {
+        "max": 20,
+        "min": 0,
+        "order": 202,
+        "step": 0.1,
+        "text": "ui_speedRains",
+        "type": "slider",
+        "value": 4.5
+      },
+      "use_music_speed_control": {
+        "order": 203,
+        "text": "ui_useMusicSpeedControl",
+        "type": "bool",
+        "value": true
+      },
+      "background_divide3": {
+        "order": 300,
+        "text": "ui_widgets"
+      },
+      "info_position": {
+        "max": 4,
+        "min": 1,
+        "order": 301,
+        "step": 1,
+        "text": "ui_infoPosition",
+        "type": "slider",
+        "value": 4
+      },
+      "use_info": {
+        "order": 302,
+        "text": "ui_useInfo",
+        "type": "bool",
+        "value": true
+      },
+      "use_twelve_hour_clock": {
+        "order": 303,
+        "text": "ui_useTwelveHourClock",
+        "type": "bool",
+        "value": false
+      },
+      "use_seconds_info": {
+        "order": 304,
+        "text": "ui_useSecondsInInfo",
+        "type": "bool",
+        "value": true,
+        "condition": "use_info.value === true"
+      },
+      "use_fahrenheit": {
+        "order": 305,
+        "text": "ui_useFahrenheit",
+        "type": "bool",
+        "value": false,
+        "condition": "use_info.value === true"
+      },
+      "use_custom_latlon": {
+        "order": 306,
+        "text": "ui_useCustomLatLon",
+        "type": "textinput",
+        "value": "",
+        "condition": "use_info.value === true"
+      },
+      "background_divide4": {
+        "order": 400,
+        "text": "ui_calendar"
+      },
+      "use_calendar": {
+        "order": 401,
+        "text": "ui_useCalendar",
+        "type": "bool",
+        "value": false
+      },
+      "notion_calendar_id": {
+        "order": 402,
+        "text": "ui_notionDatabaseID",
+        "type": "textinput",
+        "value": ""
+      },
+      "notion_integration_token": {
+        "order": 403,
+        "text": "ui_notionIntegrationToken",
+        "type": "textinput",
+        "value": ""
+      },
+      "calendar_position_x": {
+        "max": 100,
+        "min": 1,
+        "order": 404,
+        "step": 1,
+        "text": "ui_calendarPositionX",
+        "type": "slider",
+        "value": 5
+      },
+      "calendar_position_y": {
+        "max": 100,
+        "min": 1,
+        "order": 405,
+        "step": 1,
+        "text": "ui_calendarPositionY",
+        "type": "slider",
+        "value": 5
+      },
+      "use_calendar_update": {
+        "order": 406,
+        "text": "ui_useCalendarUpdate",
+        "type": "bool",
+        "value": false
+      },
+      "calendar_update_rate": {
+        "max": 180,
+        "min": 5,
+        "order": 407,
+        "step": 1,
+        "text": "ui_calendarUpdateRate",
+        "type": "slider",
+        "value": 30,
+        "condition": "use_calendar_update.value === true"
+      },
+      "calendar_how_to": {
+        "order": 499,
+        "text": "ui_howToCalendar"
+      },
+      "schemecolor": {
+        "order": 101,
+        "text": "ui_browse_properties_scheme_color",
+        "type": "color",
+        "value": "0.14901960784313725 0.6352941176470588 0.7725490196078432"
+      }
+    }
+  },
+  "preview": "preview.jpg",
+  "tags": ["Unspecified"],
+  "title": "やっぱり雨は降るんだね",
+  "type": "web",
+  "workshopid": "2038274232"
+}

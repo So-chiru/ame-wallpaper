@@ -1,0 +1,30 @@
+.ame-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  z-index: -1;
+
+  .ame-background-image,
+  .ame-background-layer {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    
+    pointer-events: none;
+  }
+
+  .ame-background-image {
+    &[data-blur] {
+      filter: blur(var(--blur, 32px));
+    }
+  }
+
+  .ame-background-layer {
+    background-color: rgba(0, 0, 0, 0.32);
+
+    z-index: 1;
+  }
+}
