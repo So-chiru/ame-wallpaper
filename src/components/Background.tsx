@@ -34,15 +34,18 @@ export const BackgroundContainer = () => {
     (state: RootState) => state.settings.background_image_file.value
   ) as unknown) as AmeOptionString['value']
 
-  let blur = (useSelector(
-    (state: RootState) => state.settings.background_blur.value
-  ) as unknown) as AmeOptionNumber['value']
+  let blur = useSelector((state: RootState) => state.settings.background_blur)
 
   if (!image) {
     image = './images/ame-bg.jpg'
   }
-  
-  return <BackgroundComponent image={image} blur={blur}></BackgroundComponent>
+
+  return (
+    <BackgroundComponent
+      image={image}
+      blur={blur.value as number}
+    ></BackgroundComponent>
+  )
 }
 
 export default BackgroundContainer

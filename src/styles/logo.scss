@@ -1,0 +1,39 @@
+.ame-logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  .ame-logo-slide {
+    margin: auto;
+    display: contents;
+
+    transition: 0.3s opacity cubic-bezier(0.19, 1, 0.22, 1);
+
+    opacity: 1;
+  }
+}
+
+.ame-logo-image {
+  position: absolute;
+  height: 55%;
+
+  opacity: 0;
+
+  transition: 0.33s opacity cubic-bezier(0.19, 1, 0.22, 1);
+
+  &[data-current='true'] {
+    opacity: 1;
+  }
+}
+
+.contrast-ame {
+  height: 34vh;
+}
+
+.contrast-tuyu {
+  height: 13vh;
+}

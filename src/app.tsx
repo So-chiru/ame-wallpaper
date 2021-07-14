@@ -7,6 +7,7 @@ import store from './store/index'
 import Background from './components/Background'
 import Options from './components/Options'
 import Rain from './components/Rain'
+import Logo from './components/Logo'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Options></Options>
         <Background></Background>
         <Rain></Rain>
+        <Logo></Logo>
       </>
     </Provider>
   )

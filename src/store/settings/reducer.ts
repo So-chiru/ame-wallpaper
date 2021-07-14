@@ -52,14 +52,14 @@ const SettingsDefault: {
     default: true
   },
   max_rain: {
-    shorten: 'rainCounts',
+    shorten: 'rain',
     category: SettingsCategory.Background,
-    default: 600
+    default: 450
   },
   speed_rain: {
     shorten: 'rainSpeed',
     category: SettingsCategory.Background,
-    default: 4
+    default: 5
   },
   use_music_speed_control: {
     shorten: 'rainMusicCtrl',
@@ -132,9 +132,15 @@ const SettingsDefault: {
     default: 30
   }
 }
+;(Object.keys(SettingsDefault) as AmeOptionKeys[]).forEach(key => {
+  SettingsDefault[key] = {
+    ...SettingsDefault[key],
+    value: SettingsDefault[key].default
+  }
+})
 
 const ameSettingsUpdate = (state = SettingsDefault, action: SettingsAction) => {
-  if (!action.data) {
+  if (!action) {
     throw new Error('Action value is falsy.')
   }
 
@@ -153,7 +159,14 @@ const ameSettingsUpdate = (state = SettingsDefault, action: SettingsAction) => {
     data[action.key!] = action.data as AmeOption
   }
 
-  return Object.assign({}, state, data)
+  if (!Object.keys(data).length) {
+    return state
+  }
+
+  return {
+    ...state,
+    ...data
+  }
 }
 
 const SettingsReducer = (
@@ -162,7 +175,7 @@ const SettingsReducer = (
 ): typeof SettingsDefault => {
   switch (action.type) {
     case '@ame/settings/update':
-      ameSettingsUpdate(state, action)
+      return ameSettingsUpdate(state, action)
     default:
       return state
   }

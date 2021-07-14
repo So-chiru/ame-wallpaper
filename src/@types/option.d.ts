@@ -39,20 +39,24 @@ declare interface AmeOptionBase {
         [key in AmeLanguages]: string
       }
     | string
+  default?: boolean | string | number
   value?: boolean | string | number
 }
 
 declare interface AmeOptionBoolean extends AmeOptionBase {
   default: boolean
+  type: 'bool'
   value?: boolean
 }
 
 declare interface AmeOptionString extends AmeOptionBase {
   default: string | undefined
+  type: 'string'
   value?: string
 }
 
 declare interface AmeOptionNumber extends AmeOptionBase {
   default: number | undefined
+  type: 'number'
   value?: number
 }
