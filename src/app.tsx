@@ -7,8 +7,9 @@ import store from './store/index'
 import Background from './components/Background'
 import Options from './components/Options'
 import Rain from './components/Rain'
-import Logo from './components/Logo'
 import Ripple from './components/Ripple'
+import Logo from './components/Logo'
+import Info from './components/Info'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Background></Background>
         <Rain></Rain>
         <Logo></Logo>
+        <Info></Info>
         <Ripple></Ripple>
       </>
     </Provider>

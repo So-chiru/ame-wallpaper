@@ -176,7 +176,7 @@ export const SettingsDefault: {
   info_position: {
     shorten: 'infoPosition',
     category: SettingsCategoryKeys.Information,
-    default: '',
+    default: 4,
     localization: {
       'en-us': 'Information Widget Position (1-4, Top-Left to Right-Bottom)',
       'ja-jp': '情報ウィジェットの位置',
@@ -189,14 +189,14 @@ export const SettingsDefault: {
       type: 'slider'
     }
   },
-  use_info: {
-    shorten: 'info',
+  use_clock: {
+    shorten: 'clock',
     category: SettingsCategoryKeys.Information,
     default: false,
     localization: {
-      'en-us': 'Use Information Widget',
-      'ja-jp': '情報ウィジェット使用',
-      'ko-kr': '정보 위젯 사용'
+      'en-us': 'Use Clock Widget',
+      'ja-jp': '時計ウィジェット使用',
+      'ko-kr': '시계 위젯 사용'
     },
     weOptions: {
       type: 'bool'
@@ -213,6 +213,33 @@ export const SettingsDefault: {
     },
     weOptions: {
       type: 'bool'
+    }
+  },
+  use_weather: {
+    shorten: 'weather',
+    category: SettingsCategoryKeys.Information,
+    default: false,
+    localization: {
+      'en-us': 'Use weather widget',
+      'ja-jp': '天気ウィジェット使用 ',
+      'ko-kr': '날씨 위젯 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
+  },
+  use_custom_latlon: {
+    shorten: 'latlon',
+    category: SettingsCategoryKeys.Information,
+    default: '',
+    localization: {
+      'en-us': 'Custom Lat/Lon location (ex: 35.681235,139.767110)',
+      'ja-jp': '天気情報に使う緯度/経度(ex: 35.681235,139.767110)',
+      'ko-kr': '수동 위도/경도 (ex: 35.681235,139.767110)'
+    },
+    weOptions: {
+      type: 'textinput',
+      condition: 'use_info.value === true'
     }
   },
   use_seconds_info: {
@@ -240,20 +267,6 @@ export const SettingsDefault: {
     },
     weOptions: {
       type: 'bool',
-      condition: 'use_info.value === true'
-    }
-  },
-  use_custom_latlon: {
-    shorten: 'latlon',
-    category: SettingsCategoryKeys.Information,
-    default: '',
-    localization: {
-      'en-us': 'Custom Lat/Lon location (ex: 35.681235,139.767110)',
-      'ja-jp': '天気情報に使う緯度/経度(ex: 35.681235,139.767110)',
-      'ko-kr': '수동 위도/경도 (ex: 35.681235,139.767110)'
-    },
-    weOptions: {
-      type: 'textinput',
       condition: 'use_info.value === true'
     }
   },
