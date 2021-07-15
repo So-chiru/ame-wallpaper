@@ -4,6 +4,10 @@
   height: 100%;
   display: flex;
 
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+
   justify-content: center;
   align-items: center;
 
