@@ -1,3 +1,5 @@
+import { AmeOption, AmeOptionKeys } from "@/@types/option"
+
 export interface SettingsAction {
   type: string
   key?: AmeOptionKeys

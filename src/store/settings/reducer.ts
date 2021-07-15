@@ -1,135 +1,354 @@
+import { AmeOption, AmeOptionKeys, SettingsCategoryKeys } from '@/@types/option'
 import { SettingsAction } from './action'
 
-const SettingsCategory = {
-  Background: 'Background',
-  Particles: 'Particles',
-  Logo: 'Logo',
-  Information: 'Clock & Weather Widget',
-  Calendar: 'Calendar Widget'
-}
-
-const SettingsDefault: {
+export const SettingsDefault: {
   [key in AmeOptionKeys]: AmeOption
 } = {
   background_image_file: {
     shorten: 'background',
-    category: SettingsCategory.Background,
-    default: ''
+    category: SettingsCategoryKeys.Background,
+    default: '',
+    localization: {
+      'en-us': 'Background Image',
+      'ja-jp': '背景として使用するイメージファイル',
+      'ko-kr': '배경 이미지'
+    },
+    weOptions: {
+      type: 'file'
+    }
   },
   background_blur: {
     shorten: 'blur',
-    category: SettingsCategory.Background,
-    default: 32
+    category: SettingsCategoryKeys.Background,
+    default: 32,
+    localization: {
+      'en-us': 'Use Background Blur (0 to disable)',
+      'ja-jp': '背景ぼかし効果を使用 (0: 無効)',
+      'ko-kr': '배경 흐림 효과 사용 (0으로 비활성화)'
+    },
+    weOptions: {
+      max: 60,
+      min: 0,
+      step: 1,
+      type: 'slider'
+    }
   },
   use_logo: {
     shorten: 'logo',
-    category: SettingsCategory.Background,
-    default: true
+    category: SettingsCategoryKeys.Logo,
+    default: true,
+    localization: {
+      'en-us': 'Use Logo',
+      'ja-jp': 'ロゴ使用',
+      'ko-kr': '로고 사용 '
+    },
+    weOptions: {
+      fraction: true,
+      type: 'bool'
+    }
   },
   slide_delay: {
     shorten: 'slideDelay',
-    category: SettingsCategory.Logo,
-    default: 20000
+    category: SettingsCategoryKeys.Logo,
+    default: 20000,
+    localization: {
+      'en-us': 'Logo Slide Transition Delay',
+      'ja-jp': 'ロゴを変更する遅延時間',
+      'ko-kr': '로고 슬라이드 전환 간격'
+    },
+    weOptions: {
+      max: 60000,
+      min: 0,
+      step: 100,
+      type: 'slider',
+      condition: 'use_logo.value === true && slide_logo_image.value === 0'
+    }
   },
   slide_logo_image: {
     shorten: 'slideImage',
-    category: SettingsCategory.Logo,
-    default: 0
+    category: SettingsCategoryKeys.Logo,
+    default: 0,
+    localization: {
+      'en-us':
+        'Pin Logo Image (0: Disable, 1-2: Default Image, 3: Custom Image)',
+      'ja-jp':
+        'ロゴイメージ固定  (0: 無効, 1-2: 基本イメージ, 3: ユーザー設定イメージ)',
+      'ko-kr':
+        '로고 이미지 고정 (0: 비활성화, 1-2: 기본 이미지, 3: 지정된 이미지)'
+    },
+    weOptions: {
+      max: 3,
+      min: 0,
+      step: 1,
+      type: 'slider',
+      condition: 'use_logo.value === true'
+    }
   },
   custom_logo_image: {
     shorten: 'customLogo',
-    category: SettingsCategory.Logo,
-    default: ''
+    category: SettingsCategoryKeys.Logo,
+    default: '',
+    localization: {
+      'en-us': 'Custom Logo Image',
+      'ja-jp': 'ユーザー設定のロゴイメージ',
+      'ko-kr': '지정된 로고 이미지'
+    },
+    weOptions: {
+      type: 'file',
+      condition: 'use_logo.value === true && slide_logo_image.value === 3'
+    }
   },
   custom_logo_image_scale: {
     shorten: 'customLogoScale',
-    category: SettingsCategory.Logo,
-    default: 100
+    category: SettingsCategoryKeys.Logo,
+    default: 100,
+    localization: {
+      'en-us': 'Custom Logo Image Scale',
+      'ja-jp': 'ユーザー設定のロゴイメージの倍率',
+      'ko-kr': '지정된 로고 이미지 크기 배율'
+    },
+    weOptions: {
+      max: 200,
+      min: 0,
+      step: 1,
+      type: 'slider',
+      condition: 'use_logo.value === true && slide_logo_image.value === 3'
+    }
   },
   use_ripple_effect: {
     shorten: 'ripple',
-    category: SettingsCategory.Background,
-    default: true
+    category: SettingsCategoryKeys.Background,
+    default: true,
+    localization: {
+      'en-us': 'Use ripple effect on click',
+      'ja-jp': 'クリックする時にリップル効果を表示する',
+      'ko-kr': '화면 클릭 시 물수제비 효과 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   max_rain: {
     shorten: 'rain',
-    category: SettingsCategory.Background,
-    default: 450
+    category: SettingsCategoryKeys.Background,
+    default: 450,
+    localization: {
+      'en-us': 'Rain particles',
+      'ja-jp': '最大雨滴パーティクル数',
+      'ko-kr': '빗방울 파티클 갯수'
+    },
+    weOptions: {
+      max: 2000,
+      min: 0,
+      step: 1,
+      type: 'slider'
+    }
   },
   speed_rain: {
     shorten: 'rainSpeed',
-    category: SettingsCategory.Background,
-    default: 5
+    category: SettingsCategoryKeys.Background,
+    default: 5,
+    localization: {
+      'en-us': 'Speed of rain',
+      'ja-jp': '雨滴速度',
+      'ko-kr': '비 속도'
+    },
+    weOptions: {
+      max: 60,
+      min: 0,
+      step: 1,
+      type: 'slider'
+    }
   },
   use_music_speed_control: {
     shorten: 'rainMusicCtrl',
-    category: SettingsCategory.Background,
-    default: true
+    category: SettingsCategoryKeys.Background,
+    default: true,
+    localization: {
+      'en-us': 'Match rain speed to music',
+      'ja-jp': '音楽に合わせて雨滴速度を調節する',
+      'ko-kr': '음악에 맞춰 비 속도 조절'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   info_position: {
     shorten: 'infoPosition',
-    category: SettingsCategory.Information,
-    default: ''
+    category: SettingsCategoryKeys.Information,
+    default: '',
+    localization: {
+      'en-us': 'Information Widget Position (1-4, Top-Left to Right-Bottom)',
+      'ja-jp': '情報ウィジェットの位置',
+      'ko-kr': '정보 위젯 위치 (1-4, 왼쪽-위에서 오른쪽-아래까지'
+    },
+    weOptions: {
+      max: 4,
+      min: 1,
+      step: 1,
+      type: 'slider'
+    }
   },
   use_info: {
     shorten: 'info',
-    category: SettingsCategory.Information,
-    default: false
+    category: SettingsCategoryKeys.Information,
+    default: false,
+    localization: {
+      'en-us': 'Use Information Widget',
+      'ja-jp': '情報ウィジェット使用',
+      'ko-kr': '정보 위젯 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   use_twelve_hour_clock: {
     shorten: 'halfHourClock',
-    category: SettingsCategory.Information,
-    default: false
+    category: SettingsCategoryKeys.Information,
+    default: false,
+    localization: {
+      'en-us': 'Use 12-hour clock',
+      'ja-jp': '時計を12時間で表示',
+      'ko-kr': '12시간 형식 시계 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   use_seconds_info: {
     shorten: 'seconds',
-    category: SettingsCategory.Information,
-    default: true
+    category: SettingsCategoryKeys.Information,
+    default: true,
+    localization: {
+      'en-us': 'Display seconds in clock widget',
+      'ja-jp': '時間ウィジェットに秒を表示する',
+      'ko-kr': '시간 위젯에 초 표시'
+    },
+    weOptions: {
+      condition: 'use_info.value === true',
+      type: 'bool'
+    }
   },
   use_fahrenheit: {
     shorten: 'fahrenheit',
-    category: SettingsCategory.Information,
-    default: false
+    category: SettingsCategoryKeys.Information,
+    default: false,
+    localization: {
+      'en-us': 'Use Fahrenheit (°F) instead of Celsius (°C)',
+      'ja-jp': '摂氏（°C）の代わりに華氏（°F）を使用 ',
+      'ko-kr': '섭씨 (°C) 대신 화씨 (°F) 사용'
+    },
+    weOptions: {
+      type: 'bool',
+      condition: 'use_info.value === true'
+    }
   },
   use_custom_latlon: {
     shorten: 'latlon',
-    category: SettingsCategory.Information,
-    default: ''
+    category: SettingsCategoryKeys.Information,
+    default: '',
+    localization: {
+      'en-us': 'Custom Lat/Lon location (ex: 35.681235,139.767110)',
+      'ja-jp': '天気情報に使う緯度/経度(ex: 35.681235,139.767110)',
+      'ko-kr': '수동 위도/경도 (ex: 35.681235,139.767110)'
+    },
+    weOptions: {
+      type: 'textinput',
+      condition: 'use_info.value === true'
+    }
   },
   use_calendar: {
     shorten: 'calendar',
-    category: SettingsCategory.Calendar,
-    default: false
+    category: SettingsCategoryKeys.Calendar,
+    default: false,
+    localization: {
+      'en-us': 'Use Calendar',
+      'ja-jp': 'カレンダー使用',
+      'ko-kr': '캘린더 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   notion_calendar_id: {
     shorten: 'calendarId',
-    category: SettingsCategory.Calendar,
-    default: ''
+    category: SettingsCategoryKeys.Calendar,
+    default: '',
+    localization: 'Notion Calendar Database ID',
+    weOptions: {
+      type: 'textinput'
+    }
   },
   notion_integration_token: {
     shorten: 'calendarToken',
-    category: SettingsCategory.Calendar,
-    default: ''
+    category: SettingsCategoryKeys.Calendar,
+    default: '',
+    localization: 'Notion Integration Internal Token',
+    weOptions: {
+      type: 'textinput'
+    }
   },
   calendar_position_x: {
     shorten: 'calendarPosX',
-    category: SettingsCategory.Calendar,
-    default: 5
+    category: SettingsCategoryKeys.Calendar,
+    default: 5,
+    localization: {
+      'en-us': 'Calendar Position X (from right)',
+      'ja-jp': 'カレンダーX座標（右から）',
+      'ko-kr': '캘린더 위치 X (오른쪽 기준)'
+    },
+    weOptions: {
+      max: 100,
+      min: 1,
+      step: 1,
+      type: 'slider'
+    }
   },
   calendar_position_y: {
     shorten: 'calendarPosY',
-    category: SettingsCategory.Calendar,
-    default: 5
+    category: SettingsCategoryKeys.Calendar,
+    default: 5,
+    localization: {
+      'en-us': 'Calendar Position Y (from top)',
+      'ja-jp': 'カレンダーY座標（上から）',
+      'ko-kr': '캘린더 위치 Y (위 기준)'
+    },
+    weOptions: {
+      max: 100,
+      min: 1,
+      step: 1,
+      type: 'slider'
+    }
   },
   use_calendar_update: {
     shorten: 'calendarUpdate',
-    category: SettingsCategory.Calendar,
-    default: true
+    category: SettingsCategoryKeys.Calendar,
+    default: true,
+    localization: {
+      'en-us': 'Use calendar auto update',
+      'ja-jp': 'カレンダーの自動更新を使用する',
+      'ko-kr': '캘린더 자동 업데이트 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
   },
   calendar_update_rate: {
     shorten: 'calendarUpdateRate',
-    category: SettingsCategory.Calendar,
-    default: 30
+    category: SettingsCategoryKeys.Calendar,
+    default: 30,
+    localization: {
+      'en-us': 'Calendar update rate (min)',
+      'ja-jp': 'カレンダーの自動更新サイクル (分)',
+      'ko-kr': '캘린더 업데이트 주기 (분)'
+    },
+    weOptions: {
+      max: 180,
+      min: 5,
+      step: 1,
+      type: 'slider',
+      condition: 'use_calendar_update.value === true'
+    }
   }
 }
 ;(Object.keys(SettingsDefault) as AmeOptionKeys[]).forEach(key => {

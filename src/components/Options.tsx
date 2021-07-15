@@ -1,3 +1,4 @@
+import { AmeOption, AmeOptionKeys } from '@/@types/option'
 import { RootState } from '@/store'
 import { SettingsAction, updateSettings } from '@/store/settings/action'
 import React, { useEffect } from 'react'

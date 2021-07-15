@@ -4,6 +4,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import '@/styles/background'
+import { AmeOptionString } from '@/@types/option'
 
 interface BackgroundComponentProps {
   image?: string

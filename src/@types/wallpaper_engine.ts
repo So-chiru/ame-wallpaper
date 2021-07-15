@@ -1,61 +1,60 @@
 import RainCanvas from '@o/canvas'
 import Slide from '@o/slide'
+import { AmeOptionKeys } from './option'
 
-export {}
+export interface WEOptionBase {
+  order?: number
+  text?: string
+  condition?: string
+  value?: boolean | string | number
+}
+
+export interface WEColorOption extends WEOptionBase {
+  type: 'color'
+  value: string
+}
+
+export interface WETextInputOption extends WEOptionBase {
+  type: 'textinput'
+  value: string
+}
+
+export interface WESliderOption extends WEOptionBase {
+  type: 'slider'
+  value: number
+  max: number
+  min: number
+  step?: number
+  editable?: boolean
+}
+
+export interface WECheckboxOption extends WEOptionBase {
+  type: 'bool'
+  value: boolean
+}
+
+export interface WEDirectoryOption extends WEOptionBase {
+  type: 'directory'
+  mode: 'ondemand' | 'fetchall'
+  value: string
+}
+
+export interface WEFileOption extends WEOptionBase {
+  type: 'file'
+  fileType?: 'video' | 'image'
+  value: string
+}
+
+export type WEOptions =
+  | WEColorOption
+  | WETextInputOption
+  | WESliderOption
+  | WECheckboxOption
+  | WEDirectoryOption
+  | WEFileOption
+  | WEOptionBase
 
 declare global {
-  interface WEOptionBase {
-    order?: number
-    text?: string
-    condition?: string
-    value?: boolean | string | number
-  }
-
-  interface WEColorOption extends WEOptionBase {
-    type: 'color'
-    value: string
-  }
-
-  interface WETextInputOption extends WEOptionBase {
-    type: 'textinput'
-    value: string
-  }
-
-  interface WESliderOption extends WEOptionBase {
-    type: 'slider'
-    value: number
-    max: number
-    min: number
-    step?: number
-    editable?: boolean
-  }
-
-  interface WECheckboxOption extends WEOptionBase {
-    type: 'bool'
-    value: boolean
-  }
-
-  interface WEDirectoryOption extends WEOptionBase {
-    type: 'directory'
-    mode: 'ondemand' | 'fetchall'
-    value: string
-  }
-
-  interface WEFileOption extends WEOptionBase {
-    type: 'file'
-    fileType?: 'video' | 'image'
-    value: string
-  }
-
-  type WEOptions =
-    | WEColorOption
-    | WETextInputOption
-    | WESliderOption
-    | WECheckboxOption
-    | WEDirectoryOption
-    | WEFileOption
-    | WEOptionBase
-
   interface Window {
     wallpaperPropertyListener?: {
       /**
