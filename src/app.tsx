@@ -10,6 +10,7 @@ import Rain from './components/Rain'
 import Ripple from './components/Ripple'
 import Logo from './components/Logo'
 import Info from './components/Info'
+import Calendar from './components/Calendar'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Rain></Rain>
         <Logo></Logo>
         <Info></Info>
+        <Calendar></Calendar>
         <Ripple></Ripple>
       </>
     </Provider>

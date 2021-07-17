@@ -1,4 +1,4 @@
-import { Property } from '@o/@types/notion'
+import { Property, Database } from '@notionhq/client/build/src/api-types'
 
 interface CalendarData {
   title: string
@@ -14,5 +14,5 @@ interface CalendarData {
   }
   done?: boolean
   memo?: string
-  properties: Record<string, Property>
+  properties: Database['properties']
 }

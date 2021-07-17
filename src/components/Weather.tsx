@@ -207,7 +207,7 @@ export const WeatherContainer = () => {
     <WeatherDataComponent
       latlon={latlon}
       fahrenheit={fahrenheit}
-      autoUpdate={autoUpdate}
+      autoUpdate={autoUpdate as number | undefined}
     ></WeatherDataComponent>
   )
 }

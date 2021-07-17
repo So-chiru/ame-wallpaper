@@ -55,13 +55,6 @@ export enum APIErrorCode {
   ServiceUnavailable = 'service_unavailable'
 }
 
-export interface ErrorResponse {
-  object: 'error'
-  status: 400 | 401 | 403 | 404 | 409 | 429 | 500 | 503
-  code: APIErrorCode
-  message: string
-}
-
 /*
  * Pagination
  */
