@@ -48,6 +48,7 @@ export type AmeOptionKeys =
   | 'info_position'
   | 'use_clock'
   | 'use_weather'
+  | 'weather_update_rate'
   | 'use_twelve_hour_clock'
   | 'use_seconds_info'
   | 'use_fahrenheit'

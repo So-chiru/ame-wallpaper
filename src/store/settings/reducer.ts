@@ -228,6 +228,22 @@ export const SettingsDefault: {
       type: 'bool'
     }
   },
+  weather_update_rate: {
+    shorten: 'weatherUpdate',
+    category: SettingsCategoryKeys.Information,
+    default: 60,
+    localization: {
+      'en-us': 'Weather widget update rate (minutes, minimum: 30, disable: 0)',
+      'ja-jp': '天気ウィジェット更新周期（分単位、少なくとも30, 0: 無効）',
+      'ko-kr': '날씨 위젯 업데이트 주기 (분 단위, 최소 30, 끄려면 0)'
+    },
+    weOptions: {
+      max: 720,
+      min: 0,
+      step: 30,
+      type: 'slider'
+    }
+  },
   use_custom_latlon: {
     shorten: 'latlon',
     category: SettingsCategoryKeys.Information,

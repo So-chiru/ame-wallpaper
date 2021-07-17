@@ -1,0 +1,75 @@
+.ame-weather-widget {
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.32);
+  user-select: none;
+
+  .top,
+  .bottom {
+    display: flex;
+  }
+
+  p {
+    margin: 0;
+    color: white;
+  }
+
+  .icon {
+    svg {
+      width: 14px;
+      height: 14px;
+      color: white;
+      fill: white;
+    }
+  }
+
+  .icon,
+  .text {
+    margin: auto;
+  }
+
+  .detail {
+    margin-right: 5px;
+    display: flex;
+
+    &:last-child {
+      margin-right: unset;
+    }
+  }
+
+  .top {
+    letter-spacing: -2px;
+  }
+
+  .bottom {
+    font-size: 14px;
+    letter-spacing: -1px;
+  }
+
+  .temperature {
+    font-size: 32px;
+
+    margin: 0;
+  }
+
+  img {
+    width: 36px;
+    height: 36px;
+    margin-left: 6px;
+  }
+}
+
+.ame-clock-widget + .ame-weather-widget {
+  &::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: #fff;
+    border-radius: 6px;
+    opacity: 0.2;
+    margin-left: -20px;
+  }
+
+  margin-left: 42px;
+}

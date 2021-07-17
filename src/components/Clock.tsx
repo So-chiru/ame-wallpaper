@@ -24,12 +24,14 @@ export const ClockComponent = ({
 
   return (
     <div className='ame-clock-widget' data-style={1}>
-      <h3 className='hours'>
-        {padding((twelveHour && hours > 12 ? hours - 12 : hours) || 12)}
-      </h3>
-      <h3 className='minutes'>{padding(minutes)}</h3>
-      {useSeconds && <p className='seconds'>{padding(seconds)}</p>}
-      {twelveHour && <p className='ampm'>{hours >= 12 ? 'PM' : 'AM'}</p>}
+      <div className='contents'>
+        <h3 className='hours'>
+          {padding((twelveHour && hours > 12 ? hours - 12 : hours) || 12)}
+        </h3>
+        <h3 className='minutes'>{padding(minutes)}</h3>
+        {useSeconds && <p className='seconds'>{padding(seconds)}</p>}
+        {twelveHour && <p className='ampm'>{hours >= 12 ? 'PM' : 'AM'}</p>}
+      </div>
     </div>
   )
 }
