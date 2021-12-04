@@ -47,6 +47,8 @@ export const LogoComponent = ({ images, pointer }: LogoComponentProps) => {
 export const LogoContainer = () => {
   const [pointer, setPointer] = useState<number>(0)
 
+  const wallpaperMode = useSelector((state: RootState) => state.env.mode)
+
   const useLogo = useSelector(
     (state: RootState) => state.settings.use_logo.value
   ) as boolean
@@ -80,7 +82,8 @@ export const LogoContainer = () => {
 
   if (customImage) {
     logoImages.push({
-      src: customImage,
+      src:
+        (wallpaperMode === 'wallpaperEngine' ? 'file:///' : '') + customImage,
       className: 'contrast-custom',
       scale: customImageScale
     })
@@ -88,7 +91,7 @@ export const LogoContainer = () => {
 
   useEffect(() => {
     if (!useLogo || pinLogo || !slideDelay) {
-      setPointer(pinLogo || 0)
+      setPointer(pinLogo - 1 || 0)
 
       return
     }

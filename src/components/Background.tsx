@@ -19,7 +19,7 @@ export const BackgroundComponent = ({
     <div className='ame-background'>
       <img
         className='ame-background-image'
-        src={image}
+        src={`${image}`}
         data-blur={blur ? blur : undefined}
         style={{
           ['--blur' as string]: blur ? blur + 'px' : undefined
@@ -31,6 +31,8 @@ export const BackgroundComponent = ({
 }
 
 export const BackgroundContainer = () => {
+  const wallpaperMode = useSelector((state: RootState) => state.env.mode)
+
   let image = (useSelector(
     (state: RootState) => state.settings.background_image_file.value
   ) as unknown) as AmeOptionString['value']
@@ -39,6 +41,8 @@ export const BackgroundContainer = () => {
 
   if (!image) {
     image = './images/ame-bg.jpg'
+  } else if (wallpaperMode === 'wallpaperEngine') {
+    image = 'file:///' + image
   }
 
   return (

@@ -255,7 +255,7 @@ export const SettingsDefault: {
     },
     weOptions: {
       type: 'textinput',
-      condition: 'use_info.value === true'
+      condition: 'use_weather.value === true'
     }
   },
   use_seconds_info: {
@@ -268,7 +268,7 @@ export const SettingsDefault: {
       'ko-kr': '시간 위젯에 초 표시'
     },
     weOptions: {
-      condition: 'use_info.value === true',
+      condition: 'use_clock.value === true',
       type: 'bool'
     }
   },
@@ -283,7 +283,7 @@ export const SettingsDefault: {
     },
     weOptions: {
       type: 'bool',
-      condition: 'use_info.value === true'
+      condition: 'use_weather.value === true'
     }
   },
   use_calendar: {
