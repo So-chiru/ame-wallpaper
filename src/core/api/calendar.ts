@@ -53,7 +53,7 @@ const parseDatabase = (data: Database): CalendarData => {
     let item = data.properties[keyName]
 
     if (item.id === 'title' && item.type === 'title') {
-      title = (item.title[0] as RichTextBaseInput).plain_text || ''
+      title = item.title[0] ? (item.title[0] as RichTextBaseInput).plain_text || '' : 'Untitled'
     } else if (item.type === 'multi_select' && tagsFieldCheck(keyName)) {
       tags = (item.multi_select as unknown) as {
         color: string
