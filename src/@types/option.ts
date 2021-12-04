@@ -47,6 +47,7 @@ export type AmeOptionKeys =
   | 'use_music_speed_control'
   | 'info_position'
   | 'use_clock'
+  | 'clock_style'
   | 'use_weather'
   | 'weather_update_rate'
   | 'use_twelve_hour_clock'

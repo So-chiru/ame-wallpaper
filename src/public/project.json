@@ -21,6 +21,7 @@
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "Use time / weather info on bottom of screen",
         "ui_useClock": "Use Clock Widget",
+        "ui_clockStyle": "Clock Style",
         "ui_useWeather": "Use Weather Widget",
         "ui_useTwelveHourClock": "Use 12-hour clock",
         "ui_useSecondsInInfo": "Display seconds in time",
@@ -54,6 +55,7 @@
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "画面の右下に時間/天気情報を表示する",
         "ui_useClock": "時間ウィジェットを表示する",
+        "ui_clockStyle": "時計の形",
         "ui_useWeather": "天気ウィジェットを表示する",
         "ui_useTwelveHourClock": "時計を12時間で表示",
         "ui_useSecondsInInfo": "時間エリアに秒を表示する",
@@ -87,6 +89,7 @@
         "ui_widgets": "<h3>위젯<br></h3>",
         "ui_useInfo": "화면 오른쪽 아래에 시간 / 날씨 표시",
         "ui_useClock": "시계 위젯 사용",
+        "ui_clockStyle": "시계 모양",
         "ui_useWeather": "날씨 위젯 사용",
         "ui_useTwelveHourClock": "12시간 형식 시계 사용",
         "ui_useSecondsInInfo": "시간에 초 표시",
@@ -225,35 +228,44 @@
         "type": "bool",
         "value": true
       },
-      "use_twelve_hour_clock": {
+      "clock_style": {
+        "max": 2,
+        "min": 1,
         "order": 303,
+        "step": 1,
+        "text": "ui_clockStyle",
+        "type": "slider",
+        "value": 1
+      },
+      "use_twelve_hour_clock": {
+        "order": 304,
         "text": "ui_useTwelveHourClock",
         "type": "bool",
         "value": false,
         "condition": "use_clock.value === true"
       },
       "use_seconds_info": {
-        "order": 304,
+        "order": 305,
         "text": "ui_useSecondsInInfo",
         "type": "bool",
         "value": true,
         "condition": "use_clock.value === true"
       },
       "use_weather": {
-        "order": 305,
+        "order": 306,
         "text": "ui_useWeather",
         "type": "bool",
         "value": true
       },
       "use_fahrenheit": {
-        "order": 306,
+        "order": 307,
         "text": "ui_useFahrenheit",
         "type": "bool",
         "value": false,
         "condition": "use_weather.value === true"
       },
       "use_custom_latlon": {
-        "order": 307,
+        "order": 308,
         "text": "ui_useCustomLatLon",
         "type": "textinput",
         "value": "",

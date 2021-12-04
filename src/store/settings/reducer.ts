@@ -202,6 +202,22 @@ export const SettingsDefault: {
       type: 'bool'
     }
   },
+  clock_style: {
+    shorten: 'clockStyle',
+    category: SettingsCategoryKeys.Information,
+    default: 1,
+    localization: {
+      'en-us': 'Clock Style',
+      'ja-jp': '時計の形',
+      'ko-kr': '시계 스타일'
+    },
+    weOptions: {
+      max: 2,
+      min: 1,
+      step: 1,
+      type: 'slider'
+    }
+  },
   use_twelve_hour_clock: {
     shorten: 'halfHourClock',
     category: SettingsCategoryKeys.Information,

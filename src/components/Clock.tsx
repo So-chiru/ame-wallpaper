@@ -8,6 +8,7 @@ import '@/styles/clock'
 interface ClockComponentProps {
   useSeconds?: boolean
   twelveHour?: boolean
+  style?: number
   date: Date
 }
 
@@ -16,6 +17,7 @@ const padding = (n: number) => (n < 10 ? `0${n}` : n.toString())
 export const ClockComponent = ({
   useSeconds,
   date,
+  style = 1,
   twelveHour
 }: ClockComponentProps) => {
   const hours = date.getHours()
@@ -23,7 +25,7 @@ export const ClockComponent = ({
   const seconds = date.getSeconds()
 
   return (
-    <div className='ame-clock-widget' data-style={1}>
+    <div className='ame-clock-widget' data-style={style}>
       <div className='contents'>
         <h3 className='hours'>
           {padding((twelveHour && hours > 12 ? hours - 12 : hours) || 12)}
@@ -57,7 +59,9 @@ export const ClockContainer = () => {
     (state: RootState) => state.settings.use_clock.value
   ) as boolean
 
-  // const clockStyle = useSelector((state: RootState) => state.settings.clock_style.value)
+  const clockStyle = useSelector(
+    (state: RootState) => state.settings.clock_style.value
+  ) as number
 
   const seconds = useSelector(
     (state: RootState) => state.settings.use_seconds_info.value
@@ -74,6 +78,7 @@ export const ClockContainer = () => {
   return (
     <ClockUpdateComponent
       date={new Date()}
+      style={clockStyle}
       useSeconds={seconds}
       twelveHour={twelveHour}
     ></ClockUpdateComponent>
