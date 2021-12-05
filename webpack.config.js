@@ -12,7 +12,7 @@ module.exports = env => {
   return {
     mode: dev ? 'development' : 'production',
     entry: {
-      app: ['babel-polyfill', path.resolve('src', 'index.ts')],
+      app: ['babel-polyfill', path.resolve('src', 'index.tsx')],
       generator: ['babel-polyfill', path.resolve('generator_src', 'index.tsx')]
     },
     output: {
@@ -47,10 +47,6 @@ module.exports = env => {
             },
             'sass-loader'
           ]
-        },
-        {
-          test: /\.pug$/,
-          use: ['pug-loader']
         },
         {
           test: /\.(png|jpg)$/,
@@ -88,18 +84,21 @@ module.exports = env => {
         VERSION: JSON.stringify(require('./package.json').version)
       }),
       //new webpack.HotModuleReplacementPlugin({}),
+      // new HtmlWebpackPlugin({
+      //   template: './osrc/views/index.html',
+      //   filename: 'index.html',
+      //   inject: false
+      // }),
       new HtmlWebpackPlugin({
-        template: './src/views/index.pug',
-        filename: 'index.html',
-        inject: false
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/views/generator.pug',
+        template: './generator_src/views/generator.html',
         filename: 'generator.html',
         inject: false
       }),
+      // new CopyWebpackPlugin({
+      //   patterns: [{ from: 'src/root', to: '.' }]
+      // }),
       new CopyWebpackPlugin({
-        patterns: [{ from: 'src/root', to: '.' }]
+        patterns: [{ from: 'src/public', to: '.' }]
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
@@ -107,10 +106,11 @@ module.exports = env => {
       })
     ],
     resolve: {
-      extensions: ['.js', '.ts', '.tsx', '.css'],
+      extensions: ['.js', '.ts', '.tsx', '.css', '.scss'],
       modules: ['node_modules'],
       alias: {
         '@': path.resolve(__dirname, 'src'),
+        '@o': path.resolve(__dirname, 'osrc'),
         '@g': path.resolve(__dirname, 'generator_src')
       }
     }

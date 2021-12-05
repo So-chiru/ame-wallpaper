@@ -1,0 +1,27 @@
+.ame-ripple {
+  position: fixed;
+  left: var(--x);
+  top: var(--y);
+
+  margin-left: -50px;
+  margin-top: -50px;
+
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 50%;
+
+  animation: AmeRipple 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes AmeRipple {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

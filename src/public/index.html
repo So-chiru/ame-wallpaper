@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>やっぱり雨は降るんだね</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./app.css"/>
+    <script src="./app.js" async></script>
+  </head>
+  <body>
+    <div id="ame-curtain" style="position: fixed;width:100vw;height:100vh;background-color: #fff;display: block;left:0;top:0;opacity: 1;z-index:10000;pointer-events: none;transition: 4s opacity cubic-bezier(0.19, 1, 0.22, 1);"></div>
+    <div class="app" id="app"></div>
+    <script>window.addEventListener('load', () => setTimeout(() => document.getElementById('ame-curtain').style.opacity = 0), 60)</script>
+  </body>
+</html>

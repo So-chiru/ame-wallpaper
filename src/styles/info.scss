@@ -1,0 +1,24 @@
+.ame-info-widgets {
+  position: fixed;
+  display: flex;
+
+  &[data-pos='1'] {
+    left: 7vw;
+    top: 7vh;
+  }
+
+  &[data-pos='2'] {
+    right: 7vw;
+    top: 7vh;
+  }
+
+  &[data-pos='3'] {
+    left: 7vw;
+    bottom: 7vh;
+  }
+
+  &[data-pos='4'] {
+    right: 7vw;
+    bottom: 7vh;
+  }
+}

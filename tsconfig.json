@@ -6,14 +6,15 @@
     "target": "esnext",
     "paths": {
       "@/*": ["src/*"],
+      "@o/*": ["osrc/*"],
       "@g/*": ["generator_src/*"],
-      "*": ["generator_src/@types/*"]
+      "*": ["generator_src/@types/*", "src/@types/*"]
     },
     "baseUrl": "./",
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "isolatedModules": true
+    "isolatedModules": false
   }
 }
