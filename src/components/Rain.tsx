@@ -18,7 +18,7 @@ export const RainComponent = (props: RainComponentProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    if (!canvasRef.current) {
+    if (canvas || !canvasRef.current) {
       return
     }
 

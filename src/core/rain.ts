@@ -60,6 +60,10 @@ export default class Rain {
     this.update(true)
   }
 
+  get startable() {
+    return this.max !== 0 && this.speed !== 0
+  }
+
   get max () {
     return this.__max
   }
@@ -69,16 +73,34 @@ export default class Rain {
   }
 
   set max(n: number) {
+    this.__max = n
+
+    if (n === 0) {
+      this.stop()
+
+      return
+    } else if (this._raf === undefined && this.speed !== 0) {
+      this.start()
+    }
+
     if (this.rain && this.rain.length > n) {
       this.rain.splice(0, n - this.rain.length)
     }
-
-    this.__max = n
   }
 
   set speed (n: number) {
     this.rain = []
     this.clear()
+
+    this.__speed = n
+
+    if (n === 0) {
+      this.stop()
+      return
+    } else if (this._raf === undefined && this.max !== 0) {
+      this.start()
+    }
+
     this.update(true)
 
     for (let i = 0; i < this.rain.length; i++) {
@@ -89,8 +111,6 @@ export default class Rain {
         )
       }
     }
-
-    this.__speed = n
   }
 
   get animation() {
@@ -161,8 +181,8 @@ export default class Rain {
         let speedBias = 0
 
         if (this.animation && this.soundWave) {
-          weightBias = this.soundWave.kick() * 4
-          speedBias = this.soundWave.snare() * this.speed * 3
+          weightBias = this.soundWave.kick() * 8
+          speedBias = this.soundWave.snare() * this.speed * 5
         } 
 
         this.rain.push({
@@ -319,15 +339,25 @@ export default class Rain {
     }
   }
 
-  render () {
+  render() {
     this.update()
     this.draw()
   }
 
-  start () {
+  start() {
+    if (!this.startable) {
+      return
+    }
+
+    if (this._raf) {
+      this.stop()
+    }
+
     this._raf = requestAnimationFrame(() => {
       this.render()
       this.start()
+
+      this._raf = undefined
     })
   }
 
@@ -335,6 +365,8 @@ export default class Rain {
     if (this._raf) {
       cancelAnimationFrame(this._raf)
     }
+
+    this._raf = undefined
   }
 
   destroy() {
