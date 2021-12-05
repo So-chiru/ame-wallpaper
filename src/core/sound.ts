@@ -59,7 +59,7 @@ export class SoundWave {
     //   this.FFTHistory.pop()
     // }
 
-    if (this.MonoFFTHistory.length > 7) {
+    if (this.MonoFFTHistory.length > 14) {
       this.MonoFFTHistory.pop()
     }
   }
