@@ -5,12 +5,18 @@ import { useSelector } from 'react-redux'
 import { requestWeather, weatherRequestParse } from '@/core/api/weather'
 
 import '@/styles/weather.scss'
+import { requestLocation } from '@/core/api/location'
 
 export const useWeatherData = (latlon: string, updateRate?: number) => {
   const [data, setData] = useState<ReturnType<typeof weatherRequestParse>>()
-  const parsedLatLon = latlon.split(',').map(v => Number(v))
 
   useEffect(() => {
+    if (!latlon) {
+      return
+    }
+
+    const parsedLatLon = latlon.split(',').map(v => Number(v))
+
     let [controller, res] = requestWeather(parsedLatLon[0], parsedLatLon[1])
     res.then(v => {
       setData(v)
@@ -169,13 +175,35 @@ export const WeatherComponent = ({
   )
 }
 
-export const WeatherDataComponent = (props: WeatherComponentProps) => {
-  if (!props.latlon) {
-    return <></>
+const useLocationData = (preLocation?: string): string => {
+  const [data, setData] = useState<string>('')
+
+  if (preLocation) {
+    return preLocation
   }
 
+  useEffect(() => {
+    if (data) {
+      return
+    }
+
+    const [signal, location] = requestLocation()
+
+    location.then(({ lat, lon }) => {
+      setData(`${lat}, ${lon}`)
+    })
+
+    return () => {
+      signal.abort()
+    }
+  }, [])
+
+  return data
+}
+
+export const WeatherDataComponent = (props: WeatherComponentProps) => {
   const weather = useWeatherData(
-    props.latlon,
+    useLocationData(props.latlon),
     props.autoUpdate === 0 ? 0 : Math.max(30, props.autoUpdate || 0)
   )
 
@@ -199,7 +227,7 @@ export const WeatherContainer = () => {
     (state: RootState) => state.settings.weather_update_rate.value
   )
 
-  if (!weather || !latlon) {
+  if (!weather) {
     return <></>
   }
 
