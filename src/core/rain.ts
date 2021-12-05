@@ -181,7 +181,7 @@ export default class Rain {
         let speedBias = 0
 
         if (this.animation && this.soundWave) {
-          weightBias = this.soundWave.kick() * 8
+          weightBias = this.soundWave.kick() * 5.5
           speedBias = this.soundWave.snare() * this.speed * 5
         } 
 
