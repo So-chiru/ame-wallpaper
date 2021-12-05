@@ -45,6 +45,8 @@ export type AmeOptionKeys =
   | 'max_rain'
   | 'speed_rain'
   | 'use_music_speed_control'
+  | 'beat_strategy'
+  | 'use_debug_wave'
   | 'info_position'
   | 'use_clock'
   | 'clock_style'

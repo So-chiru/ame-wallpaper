@@ -18,6 +18,8 @@
         "ui_maxRains": "Max rain particles count",
         "ui_speedRains": "Speed of rain",
         "ui_useMusicSpeedControl": "Control speed of rain to music",
+        "ui_beatStrategy": "Beat Strategy (0 to disable, 1-3: Kick, Snare, Both)",
+        "ui_useDebugWave": "Use debugging-only audio visualizer",
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "Use time / weather info on bottom of screen",
         "ui_useClock": "Use Clock Widget",
@@ -52,6 +54,8 @@
         "ui_maxRains": "最大雨滴パーティクル数",
         "ui_speedRains": "雨滴速度",
         "ui_useMusicSpeedControl": "音楽に合わせて雨滴速度を調節する",
+        "ui_beatStrategy": "ビット戦略（0：無効、1-3：Kick、Snare、両方）",
+        "ui_useDebugWave": "デバッグ専用オーディオビジュアライザーの使用",
         "ui_widgets": "<h3>Widget<br></h3>",
         "ui_useInfo": "画面の右下に時間/天気情報を表示する",
         "ui_useClock": "時間ウィジェットを表示する",
@@ -86,6 +90,8 @@
         "ui_maxRains": "빗방울 파티클 최대 갯수",
         "ui_speedRains": "비 속도",
         "ui_useMusicSpeedControl": "음악에 맞춰 비 속도 조절",
+        "ui_beatStrategy": "비트 전략 (0: 비활성화, 1-3: Kick, Snare, 둘 다)",
+        "ui_useDebugWave": "디버깅 전용 오디오 비쥬얼라이저 사용",
         "ui_widgets": "<h3>위젯<br></h3>",
         "ui_useInfo": "화면 오른쪽 아래에 시간 / 날씨 표시",
         "ui_useClock": "시계 위젯 사용",
@@ -208,6 +214,23 @@
         "text": "ui_useMusicSpeedControl",
         "type": "bool",
         "value": true
+      },
+      "beat_strategy": {
+        "order": 204,
+        "text": "ui_beatStrategy",
+        "type": "slider",
+        "max": 3,
+        "min": 0,
+        "step": 1,
+        "value": 0,
+        "condition": "use_music_speed_control.value === true"
+      },
+      "use_debug_wave": {
+        "order": 205,
+        "text": "ui_useDebugWave",
+        "type": "bool",
+        "value": false,
+        "condition": "use_music_speed_control.value === true"
       },
       "background_divide3": {
         "order": 300,

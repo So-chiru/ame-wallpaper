@@ -1,3 +1,5 @@
+import { SoundWave } from "./sound"
+
 interface RainObject {
   speed: number
   alpha: number
@@ -23,12 +25,18 @@ export default class Rain {
   $: HTMLCanvasElement
   $ctx: CanvasRenderingContext2D
 
-  _raf?: number
+  private _raf?: number
 
-  rain: RainObject[]
+  rain?: RainObject[]
 
-  __max: number
-  __speed: number
+  private __max: number
+  private __speed: number
+  private __animation: boolean
+
+  private soundWave?: SoundWave
+
+  beatStrategy: number
+  debugWave: boolean
 
   constructor (canvas: HTMLCanvasElement) {
     this.$ = canvas
@@ -43,6 +51,10 @@ export default class Rain {
     this.rain = []
     this.__max = 600
     this.__speed = 3
+    this.__animation = false
+
+    this.beatStrategy = 0
+    this.debugWave = false
 
     this.resize()
     this.update(true)
@@ -56,8 +68,8 @@ export default class Rain {
     return this.__speed
   }
 
-  set max (n: number) {
-    if (this.rain.length > n) {
+  set max(n: number) {
+    if (this.rain && this.rain.length > n) {
       this.rain.splice(0, n - this.rain.length)
     }
 
@@ -81,12 +93,45 @@ export default class Rain {
     this.__speed = n
   }
 
+  get animation() {
+    return this.__animation
+  }
+
+  set animation(animate: boolean) {
+    this.registerAnimation()
+
+    if (animate) {
+      this.soundWave = new SoundWave()
+    } else {
+      this.soundWave?.destroy()
+      this.soundWave = undefined
+    }
+
+    this.__animation = animate
+  }
+
   resize () {
     this.$ctx.canvas.width = document.body.offsetWidth
     this.$ctx.canvas.height = document.body.offsetHeight
   }
 
-  update (init?: boolean) {
+  registerAnimation() {
+    if (window.wallpaperRegisterAudioListener) {
+      window.wallpaperRegisterAudioListener((FFT: number[]) => {
+        if (!this.soundWave) {
+          return
+        }
+
+        this.soundWave.wave = FFT
+      })
+    }
+  }
+
+  update(init?: boolean) {
+    if (!this.rain) {
+      return
+    }
+
     if (this.rain.length < this.max) {
       for (let i = this.max - this.rain.length; i > 0; i--) {
         const depth = generateDepth()
@@ -112,11 +157,19 @@ export default class Rain {
             (this.speed / 10) * Math.random()
         )
 
+        let weightBias = 0
+        let speedBias = 0
+
+        if (this.animation && this.soundWave) {
+          weightBias = this.soundWave.kick() * 4
+          speedBias = this.soundWave.snare() * this.speed * 3
+        } 
+
         this.rain.push({
-          speed,
+          speed: speed + speedBias,
           seed,
           alpha: Math.max(0.1, calcuateAlpha(depth) / 2),
-          w: Math.max(1, Math.random() * 3),
+          w: Math.max(1, Math.random() * 3) + weightBias,
           z: depth,
           x: randomX,
           y: randomY,
@@ -124,6 +177,23 @@ export default class Rain {
         })
       }
     }
+
+    let speedAlt = 0
+
+    if (this.rain.length && this.animation && this.soundWave) {
+      if (this.beatStrategy == 1) {
+        speedAlt = this.soundWave.tkick()
+      } else if (
+        this.beatStrategy == 2
+      ) {
+        speedAlt = this.soundWave.tsnare()
+      } else if (
+        this.beatStrategy == 3
+      ) {
+        speedAlt = [this.soundWave.tkick(), this.soundWave.tsnare()].reduce((p, c) => Math.max(p, c))
+      }
+    } 
+
 
     for (let i = 0; i < this.rain.length; i++) {
       const rain = this.rain[i]
@@ -139,8 +209,9 @@ export default class Rain {
       } else {
         rain.x -= 0.01
       }
+      
 
-      rain.y += rain.speed
+      rain.y += rain.speed + (rain.speed * speedAlt * 1.5)
     }
   }
 
@@ -150,6 +221,82 @@ export default class Rain {
 
   draw () {
     this.clear()
+
+    if (!this.rain) {
+      return
+    }
+
+    /**
+     * Just for debugging.
+     */
+
+    if (this.debugWave && this.animation && this.soundWave) {
+      for (let i = 0; i < this.soundWave.wave.length; i++) {
+        const fft = this.soundWave.wave[i]
+
+        this.$ctx.strokeStyle = i < this.soundWave.wave.length / 2 ? `rgba(255,130,0,1)` : `rgba(0,130,255,1)`
+        this.$ctx.lineWidth = 5
+  
+        this.$ctx.beginPath()
+        this.$ctx.moveTo(400 + i * 5, 500)
+  
+        this.$ctx.lineTo(400 + i * 5, 500 - (fft * 100))
+  
+        this.$ctx.stroke()
+      }
+
+      /**
+       * Mono
+       */
+
+      const mono = this.soundWave.monoWave
+      for (let i = 0; i < mono.length; i++) {
+        const fft = mono[i]
+
+        this.$ctx.strokeStyle = `rgba(255,255, 255,1)`
+        this.$ctx.lineWidth = 5
+  
+        this.$ctx.beginPath()
+        this.$ctx.moveTo(400 + i * 5, 650)
+        this.$ctx.lineTo(400 + i * 5, 650 - (fft * 100))
+        this.$ctx.stroke()
+      }
+
+      this.$ctx.fillStyle = `rgba(255,255,255,0.3)`
+      this.$ctx.fillText('Mono', 398, 670)
+
+      const drawVisual = (x: number, y: number, text: string, num: number) => {
+        this.$ctx.strokeStyle = `rgba(255,255, 255,1)`
+        this.$ctx.lineWidth = 5
+    
+        this.$ctx.beginPath()
+        this.$ctx.moveTo(x, y)
+        this.$ctx.lineTo(x, y - (num * 100))
+        this.$ctx.stroke()
+  
+        this.$ctx.fillStyle = `rgba(255,255, 255, ${Math.max(0.3, num)})`
+        this.$ctx.fillText(`${text} ${num.toFixed(3)}`, x - 2, y + 10)
+      }
+
+
+      /**
+       * Bass
+       */
+
+      const kick = this.soundWave.kick()
+      drawVisual(400, 800, 'Kick', kick)
+
+      const snare = this.soundWave.snare()
+      drawVisual(480, 800, 'Snare', snare)
+
+      const tkick = this.soundWave.tkick()
+      drawVisual(560, 800, 'T-Kick', tkick)
+
+      const tsnare = this.soundWave.tsnare()
+      drawVisual(640, 800, 'T-Snare', tsnare)
+    }
+
+    
 
     for (let i = 0; i < this.rain.length; i++) {
       let rain = this.rain[i]
@@ -190,5 +337,8 @@ export default class Rain {
     }
   }
 
-  destroy () {}
+  destroy() {
+    this.stop()
+    this.rain = undefined
+  }
 }

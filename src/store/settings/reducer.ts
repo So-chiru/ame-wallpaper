@@ -173,6 +173,35 @@ export const SettingsDefault: {
       type: 'bool'
     }
   },
+  beat_strategy: {
+    shorten: 'beatStrategy',
+    category: SettingsCategoryKeys.Background,
+    default: 0,
+    localization: {
+      'en-us': 'Beat Strategy (0 to disable, 1-3: Kick, Snare, Both)',
+      'ja-jp': 'ビット戦略（0：無効、1-3：Kick、Snare、両方）',
+      'ko-kr': '비트 전략 (0: 비활성화, 1-3: Kick, Snare, 둘 다)'
+    },
+    weOptions: {
+      max: 3,
+      min: 0,
+      step: 1,
+      type: 'slider'
+    }
+  },
+  use_debug_wave: {
+    shorten: 'useDebugWave',
+    category: SettingsCategoryKeys.Background,
+    default: false,
+    localization: {
+      'en-us': 'Use debugging-only audio visualizer',
+      'ja-jp': 'デバッグ専用オーディオビジュアライザーの使用 ',
+      'ko-kr': '디버깅 전용 오디오 비쥬얼라이저 사용'
+    },
+    weOptions: {
+      type: 'bool'
+    }
+  },
   info_position: {
     shorten: 'infoPosition',
     category: SettingsCategoryKeys.Information,
