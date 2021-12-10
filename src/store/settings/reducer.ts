@@ -362,6 +362,15 @@ export const SettingsDefault: {
       type: 'textinput'
     }
   },
+  ics_endpoint: {
+    shorten: 'icsEndpoint',
+    category: SettingsCategoryKeys.Calendar,
+    default: '',
+    localization: 'ICS Endpoint',
+    weOptions: {
+      type: 'textinput'
+    }
+  },
   calendar_position_x: {
     shorten: 'calendarPosX',
     category: SettingsCategoryKeys.Calendar,

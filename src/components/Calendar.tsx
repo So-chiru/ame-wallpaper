@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { CalendarData } from '@/@types/calendar'
-import { requestDatabases } from '@/core/api/calendar'
 import { RootState } from '@/store'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -9,6 +8,8 @@ import Calendar from 'tui-calendar'
 
 import 'tui-calendar/dist/tui-calendar.css'
 import '@/styles/calendar.scss'
+import requestICSCalendar from '@/core/api/calendar/ics'
+import requestNotionDatabases from '@/core/api/calendar/notion'
 
 const calendarSettings = {
   defaultView: 'month',
@@ -77,13 +78,28 @@ interface CalendarComponentProps {
   posY?: number
 }
 
-const useCalendarData = (id: string, token: string, updateRate?: number) => {
+const useCalendarData = (
+  id: string,
+  token: string,
+  ics?: string,
+  updateRate?: number
+) => {
   const [data, setData] = useState<CalendarData[]>([])
 
   useEffect(() => {
     const update = () => {
-      requestDatabases(id, token).then(value => {
-        setData(value)
+      let providers = []
+
+      if (id !== '' && token !== '') {
+        providers.push(requestNotionDatabases(id, token))
+      }
+
+      if (typeof ics !== 'undefined') {
+        providers.push(requestICSCalendar(ics))
+      }
+
+      Promise.all(providers).then(schedules => {
+        setData(schedules.flat())
       })
     }
 
@@ -103,7 +119,7 @@ const useCalendarData = (id: string, token: string, updateRate?: number) => {
         clearInterval(updateInterval)
       }
     }
-  }, [id, token])
+  }, [id, token, ics])
 
   return data
 }
@@ -191,16 +207,18 @@ interface CalendarDataContainerProps
   extends Omit<CalendarComponentProps, 'data'> {
   id: string
   token: string
+  ics?: string
   updateRate?: number
 }
 
 export const CalendarDataContainer = ({
   id,
   token,
+  ics,
   updateRate,
   ...props
 }: CalendarDataContainerProps) => {
-  const data = useCalendarData(id, token, updateRate)
+  const data = useCalendarData(id, token, ics, updateRate)
 
   return (
     <CalendarComponent
@@ -228,6 +246,10 @@ export const CalendarContainer = () => {
     (state: RootState) => state.settings.notion_integration_token.value
   ) as string
 
+  const icsEndpoint = useSelector(
+    (state: RootState) => state.settings.ics_endpoint.value
+  ) as string
+
   const posX = useSelector(
     (state: RootState) => state.settings.calendar_position_x.value
   ) as number
@@ -236,7 +258,7 @@ export const CalendarContainer = () => {
     (state: RootState) => state.settings.calendar_position_y.value
   ) as number
 
-  if (!useCalendar || !notionID || !notionToken) {
+  if (!useCalendar || ((!notionID || !notionToken) && !icsEndpoint)) {
     return <></>
   }
 
@@ -244,6 +266,7 @@ export const CalendarContainer = () => {
     <CalendarDataContainer
       id={notionID}
       token={notionToken}
+      ics={icsEndpoint}
       updateRate={calendarUpdateRate}
       posX={posX}
       posY={posY}

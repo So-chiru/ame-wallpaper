@@ -22,5 +22,5 @@ export interface CalendarData {
   }
   done?: boolean
   memo?: string
-  properties: Record<string, Property>
+  properties?: Record<string, Property>
 }

@@ -59,6 +59,7 @@ export type AmeOptionKeys =
   | 'use_calendar'
   | 'notion_calendar_id'
   | 'notion_integration_token'
+  | 'ics_endpoint'
   | 'calendar_position_x'
   | 'calendar_position_y'
   | 'use_calendar_update'
