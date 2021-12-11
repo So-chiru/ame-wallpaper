@@ -17,9 +17,9 @@ const calendarSettings = {
   usageStatistics: false,
   month: {
     moreLayerSize: {
-      height: 'auto'
+      height: 'auto',
     },
-    startDayOfWeek: 1 // monday
+    startDayOfWeek: 1, // monday
   },
   isReadOnly: true,
   useDetailPopup: true,
@@ -67,8 +67,8 @@ const calendarSettings = {
     'month.moreViewTitle.backgroundColor': 'inherit',
     'month.moreViewTitle.borderBottom': 'none',
     'month.moreViewTitle.padding': '12px 17px 0 17px',
-    'month.moreViewList.padding': '0 17px'
-  }
+    'month.moreViewList.padding': '0 17px',
+  },
 }
 
 interface CalendarComponentProps {
@@ -95,7 +95,11 @@ const useCalendarData = (
       }
 
       if (typeof ics !== 'undefined') {
-        providers.push(requestICSCalendar(ics))
+        if (ics.indexOf('||') !== -1) {
+          ics.split('||').map(v => providers.push(requestICSCalendar(v)))
+        } else {
+          providers.push(requestICSCalendar(ics))
+        }
       }
 
       Promise.all(providers).then(schedules => {
@@ -128,7 +132,7 @@ export const CalendarComponent = ({
   data,
   show,
   posX,
-  posY
+  posY,
 }: CalendarComponentProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -180,7 +184,7 @@ export const CalendarComponent = ({
         end: end.toUTCString(),
         color: 'rgb(255,255,255)',
         borderColor,
-        bgColor: 'rgba(255,255,255,0.3)'
+        bgColor: 'rgba(255,255,255,0.3)',
       }
     }
 
@@ -195,7 +199,7 @@ export const CalendarComponent = ({
       className={'ame-calendar'}
       style={{
         ['--posX' as string]: `${posX}%`,
-        ['--posY' as string]: `${posY}%`
+        ['--posY' as string]: `${posY}%`,
       }}
       data-show={show}
       ref={ref}

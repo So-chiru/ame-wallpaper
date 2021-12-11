@@ -124,7 +124,14 @@ export const defaultWallpaperOptions: WallpaperURLOption[] = [
     help:
       'https://www.notion.so/How-to-setup-notion-calendar-for-yappaAme-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573',
     default: undefined
-  }
+  },{
+    name: 'icsEndpoint',
+    description: 'ICS Endpoint (iCal File URL, Add \'||\' between urls to use multiple url)',
+    type: 'string',
+    help:
+      'https://www.notion.so/How-to-setup-notion-calendar-for-yappaAme-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573',
+    default: undefined
+  },
 ]
 
 const App = () => {

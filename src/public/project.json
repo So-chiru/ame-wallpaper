@@ -39,7 +39,7 @@
         "ui_calendarUpdateRate": "Calendar Update Rate (min)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
         "ui_notionIntegrationToken": "Notion Integration Internal Token",
-        "ui_icsEndpoint": "ICS Endpoint (iCal File URL)",
+        "ui_icsEndpoint": "ICS Endpoint (iCal File URL, Add '||' between urls to use multiple url)",
         "ui_howToCalendar": "The guide for Notion calendar setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
       "ja-jp": {
@@ -76,7 +76,7 @@
         "ui_calendarUpdateRate": "カレンダーの自動更新サイクル (分)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
         "ui_notionIntegrationToken": "Notion Integration Internal Token",
-        "ui_icsEndpoint": "ICS Endpoint (iCal File URL)",
+        "ui_icsEndpoint": "ICS Endpoint (iCal File URL, Add '||' between urls to use multiple url)",
         "ui_howToCalendar": "Notionカレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
       },
       "ko-kr": {
@@ -113,7 +113,7 @@
         "ui_calendarUpdateRate": "캘린더 업데이트 주기 (분)",
         "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
         "ui_notionIntegrationToken": "Notion 통합 내부용 토큰",
-        "ui_icsEndpoint": "ICS 엔드포인트 (iCal 파일 URL)",
+        "ui_icsEndpoint": "ICS 엔드포인트 (iCal 파일 URL, '||' 를 URL 사이에 넣어 여러 URL 사용 가능)",
         "ui_howToCalendar": "Notion 캘린더 설정 가이드는 <a href='https://www.notion.so/b693231f298b44cdb7ed4adabbddb226'>여기</a>에서 확인 할 수 있습니다."
       }
     },
