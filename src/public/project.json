@@ -38,9 +38,9 @@
         "ui_useCalendarUpdate": "Use calendar auto update",
         "ui_calendarUpdateRate": "Calendar Update Rate (min)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
-        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token (DO NOT SHARE)",
         "ui_icsEndpoint": "ICS Endpoint (iCal File URL, Add '||' between urls to use multiple url)",
-        "ui_howToCalendar": "The guide for calendar setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
+        "ui_howToCalendar": "The guide for calendar setup is available in <a href='https://steamcommunity.com/linkfilter/?url=https://www.notion.so/c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
       "ja-jp": {
         "ui_background": "<h3>Background</h3>",
@@ -75,9 +75,9 @@
         "ui_useCalendarUpdate": "カレンダーの自動更新を使用する",
         "ui_calendarUpdateRate": "カレンダーの自動更新サイクル (分)",
         "ui_notionDatabaseID": "Notion Calendar Database ID",
-        "ui_notionIntegrationToken": "Notion Integration Internal Token",
+        "ui_notionIntegrationToken": "Notion Integration Internal Token (DO NOT SHARE)",
         "ui_icsEndpoint": "ICS Endpoint (iCal File URL, Add '||' between urls to use multiple url)",
-        "ui_howToCalendar": "カレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
+        "ui_howToCalendar": "カレンダー設定方法は<a href='https://www.notion.so/c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
       },
       "ko-kr": {
         "ui_background": "<h3>배경</h3>",
@@ -112,7 +112,7 @@
         "ui_useCalendarUpdate": "캘린더 자동 업데이트 사용",
         "ui_calendarUpdateRate": "캘린더 업데이트 주기 (분)",
         "ui_notionDatabaseID": "Notion 캘린더 데이터베이스 ID",
-        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰",
+        "ui_notionIntegrationToken": "Notion 통합 내부용 토큰 (절대 공유 금지)",
         "ui_icsEndpoint": "ICS 엔드포인트 (iCal 파일 URL, '||' 를 URL 사이에 넣어 여러 URL 사용 가능)",
         "ui_howToCalendar": "캘린더 설정 가이드는 <a href='https://www.notion.so/b693231f298b44cdb7ed4adabbddb226'>여기</a>에서 확인 할 수 있습니다."
       }
@@ -120,7 +120,7 @@
     "properties": {
       "logos": {
         "order": 99999,
-        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 12 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/profiles/76561198273773489'>Sochiru</a>.</p>"
+        "text": "<hr style='width: 200px;'><p style='margin-left: 30px;'>rev 13 - <a href='https://steamcommunity.com/sharedfiles/filedetails/changelog/2038274232'>Changelog</a>, wallpaper by <a href='https://steamcommunity.com/profiles/76561198273773489'>Sochiru</a>.</p>"
       },
       "background_divide": {
         "order": 100,
