@@ -1,3 +1,4 @@
+
 import {
   PaginatedList,
   Database,
@@ -84,7 +85,8 @@ const parseDatabase = (data: Database): CalendarData => {
   return result
 }
 
-const parseResponse = (response: PaginatedList<Database> | ErrorResponse) => {
+
+const parseNotionResponse = (response: PaginatedList<Database> | ErrorResponse) => {
   if (response.object === 'error') {
     throw new Error(response.message)
   }
@@ -98,7 +100,7 @@ const parseResponse = (response: PaginatedList<Database> | ErrorResponse) => {
   return schedules
 }
 
-export const requestDatabases = (id: string, token: string) => {
+const requestNotionDatabases = (id: string, token: string) => {
   return fetch('https://notion-api-cors.sochiru.workers.dev/?id=' + id, {
     ...notionCalendarRequestOption,
     mode: 'cors',
@@ -108,5 +110,7 @@ export const requestDatabases = (id: string, token: string) => {
     }
   })
     .then(response => response.json())
-    .then(parseResponse)
+    .then(parseNotionResponse)
 }
+
+export default requestNotionDatabases

@@ -24,17 +24,17 @@ const project: any = {
     localization: {
       'en-us': {
         ui_howToCalendar:
-          "The guide for Notion calendar setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
+          "The guide for calendar setup is available in <a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>here</a>."
       },
 
       'ja-jp': {
         ui_howToCalendar:
-          "Notionカレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
+          "カレンダー設定方法は<a href='https://www.notion.so/How-to-setup-notion-calendar-for-wallpaper-c064462ab84b4a63b8cf99cf0ccb8573'>こちら</a>から確認できます。"
       },
 
       'ko-kr': {
         ui_howToCalendar:
-          "Notion 캘린더 설정 가이드는 <a href='https://www.notion.so/b693231f298b44cdb7ed4adabbddb226'>여기</a>에서 확인 할 수 있습니다."
+          "캘린더 설정 가이드는 <a href='https://www.notion.so/b693231f298b44cdb7ed4adabbddb226'>여기</a>에서 확인 할 수 있습니다."
       }
     },
     properties: {

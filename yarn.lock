@@ -5237,6 +5237,15 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"ical-js-parser@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "ical-js-parser@npm:0.1.5"
+  dependencies:
+    luxon: 2.1.1
+  checksum: a3dd5f5af22851b0ee89d5bbdfbcace0b34f0307fc3df1e95d483e3225710c8d37186c9cd6bc5dc1e965c0cf4db990f921a2ccd960bf189bc6aede35eeee2bf2
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -5951,6 +5960,13 @@ fsevents@~2.3.2:
   dependencies:
     yallist: ^4.0.0
   checksum: f97f499f898f23e4585742138a22f22526254fdba6d75d41a1c2526b3b6cc5747ef59c5612ba7375f42aca4f8461950e925ba08c991ead0651b4918b7c978297
+  languageName: node
+  linkType: hard
+
+"luxon@npm:2.1.1":
+  version: 2.1.1
+  resolution: "luxon@npm:2.1.1"
+  checksum: 6d562796c4df195988f2afdca733e5a36457d6449c196cbf16710c706fde8d6b96c7d47fa54cd37c0cb29e4d2e7d8628a9677f36e23490139a8c90232f489e02
   languageName: node
   linkType: hard
 
@@ -9277,6 +9293,7 @@ fsevents@~2.3.2:
     eslint-import-resolver-node: ^0.3.6
     file-loader: ^6.2.0
     html-webpack-plugin: ^5.5.0
+    ical-js-parser: ^0.1.5
     mini-css-extract-plugin: ^2.4.5
     node-sass: ^6.0.1
     react: ^17.0.2
