@@ -1,6 +1,8 @@
 import ICSParser from 'ical-js-parser'
 
-import { CalendarData } from "@/@types/calendar"
+import { CalendarData, CalendarTag } from "@/@types/calendar"
+
+const colorRegex = /(<<C:)[#]?([A-z]|[0-9])+(>>)/g
 
 const parseICSDate = (str: string): Date => {
   let date = `${str.substring(0, 4)}-${str.substring(4, 6)}-${str.substring(6, 8)}`
@@ -16,7 +18,7 @@ const parseICSDate = (str: string): Date => {
   return new Date(str)
 }
 
-const parseICSResponse = (response: string) => {
+const parseICSResponse = (response: string, color: string) => {
   let schedules: CalendarData[] = []
 
   const parsed = ICSParser.toJSON(response)
@@ -28,10 +30,20 @@ const parseICSResponse = (response: string) => {
       let start = parseICSDate(event.dtstart.value)
       let end = parseICSDate(event.dtend.value)
 
+      let tags: CalendarTag[] = []
+
+      if (color) {
+        tags.push({
+          id: 'custom-color',
+          color,
+          name: 'Custom Color',
+        })
+      }
+
       schedules.push({
         title: event.summary || 'Unknown event',
         id: event.uid || Math.random().toString(16),
-        tags: [],
+        tags,
         date: {
           start: start.toISOString(),
           end: end.toISOString()
@@ -46,12 +58,24 @@ const parseICSResponse = (response: string) => {
 }
 
 const requestICSCalendar = (ics: string): Promise<CalendarData[]> => {
+  let color = ''
+  
+  if (colorRegex.test(ics)) {
+    color = ics.match(colorRegex)![0]
+    ics = ics.replace(color, '')
+    color = color.replace(/<<C:|>>/g, '')
+  }
+
+  if (ics.indexOf('holiday') > -1) {
+    color = '#F00'
+  }
+
   return fetch(ics, {
     method: 'GET',
     mode: 'cors',
   })
     .then(response => response.text())
-    .then(parseICSResponse)
+    .then((res) => parseICSResponse(res, color))
 }
 
 export default requestICSCalendar

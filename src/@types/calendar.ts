@@ -8,14 +8,16 @@ export interface ErrorResponse {
   message: string
 }
 
+export interface CalendarTag {
+  color: string
+  id: string
+  name: string
+}
+
 export interface CalendarData {
   title: string
   id: string
-  tags: {
-    color: string
-    id: string
-    name: string
-  }[]
+  tags: CalendarTag[]
   date: {
     start: string
     end?: string
