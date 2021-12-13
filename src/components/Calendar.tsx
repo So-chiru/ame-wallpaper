@@ -94,13 +94,15 @@ const useCalendarData = (
         providers.push(requestNotionDatabases(id, token))
       }
 
-      if (typeof ics !== 'undefined') {
+      if (typeof ics !== 'undefined' && ics !== '') {
         if (ics.indexOf('||') !== -1) {
           ics.split('||').map(v => providers.push(requestICSCalendar(v)))
         } else {
           providers.push(requestICSCalendar(ics))
         }
       }
+
+      console.log(providers)
 
       Promise.all(providers).then(schedules => {
         setData(schedules.flat())
